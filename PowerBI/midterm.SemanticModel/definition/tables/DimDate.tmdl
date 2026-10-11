@@ -29,15 +29,6 @@ table DimDate
 
 		annotation SummarizationSetBy = Automatic
 
-	column MonthNo
-		formatString: 0
-		lineageTag: c29d78be-3a2a-41d9-94c7-fa9d9d84c6c9
-		summarizeBy: sum
-		isNameInferred
-		sourceColumn: [MonthNo]
-
-		annotation SummarizationSetBy = Automatic
-
 	column Month
 		lineageTag: 5a1e7537-2b50-4afc-88dc-141fa1405f76
 		summarizeBy: none
@@ -46,19 +37,73 @@ table DimDate
 
 		annotation SummarizationSetBy = Automatic
 
-	column YearMonth
-		lineageTag: 323f8692-2633-4615-8205-97dfb7e41781
-		summarizeBy: none
+	column 'Month No'
+		formatString: 0
+		lineageTag: 731f42e3-1bcf-4300-9c69-9b3e0e5023d3
+		summarizeBy: sum
 		isNameInferred
-		sourceColumn: [YearMonth]
+		sourceColumn: [Month No]
 
 		annotation SummarizationSetBy = Automatic
 
-	column DayOfWeek
-		lineageTag: 25cd406a-0dee-4084-8e2f-bcb16dacfac2
+	column 'Year Month'
+		lineageTag: 1d82b0fa-f580-4c0b-973d-6264a77a402c
 		summarizeBy: none
 		isNameInferred
-		sourceColumn: [DayOfWeek]
+		sourceColumn: [Year Month]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Year Month Sort'
+		formatString: 0
+		lineageTag: 8fb4c16a-fe93-402f-8bae-39b40bc0efb5
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Year Month Sort]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Week No'
+		formatString: 0
+		lineageTag: c4d1f051-58ce-407f-8c32-2c41bd18ccd4
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Week No]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Day
+		formatString: 0
+		lineageTag: df01db57-5771-492d-83ba-068cd0746556
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Day]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Day Name'
+		lineageTag: 4d3ae9f3-df8b-4dc7-b2c6-8a3d5ec39c0e
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Day Name]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Day Of Week'
+		formatString: 0
+		lineageTag: 73b81f2a-793d-4e5b-94f6-ee1932fe00fc
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Day Of Week]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Is Weekend'
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 8e89a372-29c0-4f61-bec8-190fa3ca734d
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Is Weekend]
 
 		annotation SummarizationSetBy = Automatic
 
@@ -66,14 +111,24 @@ table DimDate
 		mode: import
 		source =
 				
-				ADDCOLUMNS(
-				    CALENDAR(DATE(2013,1,1), DATE(2017,12,31)),
-				    "Year", YEAR([Date]),
-				    "Quarter", "Q" & QUARTER([Date]),
-				    "MonthNo", MONTH([Date]),
-				    "Month", FORMAT([Date], "MMM"),
-				    "YearMonth", FORMAT([Date], "YYYY-MM"),
-				    "DayOfWeek", FORMAT([Date], "ddd")
+				VAR MinDate =
+				    MINX ( FactSales, FactSales[Date] )
+				VAR MaxDate =
+				    MAXX ( FactSales, FactSales[Date] )
+				RETURN
+				ADDCOLUMNS (
+				    CALENDAR ( MinDate, MaxDate ),
+				    "Year", YEAR ( [Date] ),
+				    "Quarter", "Q" & FORMAT ( [Date], "Q" ),
+				    "Month No", MONTH ( [Date] ),
+				    "Month", FORMAT ( [Date], "MMM" ),
+				    "Year Month", FORMAT ( [Date], "YYYY-MM" ),
+				    "Year Month Sort", YEAR ( [Date] ) * 100 + MONTH ( [Date] ),
+				    "Week No", WEEKNUM ( [Date], 2 ),
+				    "Day", DAY ( [Date] ),
+				    "Day Name", FORMAT ( [Date], "DDD" ),
+				    "Day Of Week", WEEKDAY ( [Date], 2 ),
+				    "Is Weekend", WEEKDAY ( [Date], 2 ) >= 6
 				)
 
 	annotation PBI_Id = 3c5861d4199949d1a61265fe2739842b

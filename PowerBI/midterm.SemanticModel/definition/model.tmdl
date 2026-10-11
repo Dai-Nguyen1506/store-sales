@@ -9,7 +9,7 @@ model Model
 
 annotation __PBI_TimeIntelligenceEnabled = 0
 
-annotation PBI_QueryOrder = ["DimHolidays","FactOil","DimStores","FactSales","FactTransactions"]
+annotation PBI_QueryOrder = ["DimHolidays","FactOil","DimStores","FactSales","FactTransactions","RootPath"]
 
 annotation PBI_ProTooling = ["DevMode"]
 

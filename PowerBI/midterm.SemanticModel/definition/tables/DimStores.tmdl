@@ -47,7 +47,7 @@ table DimStores
 		mode: import
 		source =
 				let
-				    Source = Csv.Document(File.Contents("C:\Users\YOGA\Desktop\Class\01_Data_Visualization\midterm\datasets\stores.csv"),[Delimiter=",", Columns=5, Encoding=1258, QuoteStyle=QuoteStyle.None]),
+				    Source = Csv.Document(File.Contents(RootPath & "datasets\stores.csv"),[Delimiter=",", Columns=5, Encoding=1258, QuoteStyle=QuoteStyle.None]),
 				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
 				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"store_nbr", Int64.Type}, {"city", type text}, {"state", type text}, {"type", type text}, {"cluster", Int64.Type}}),
 				    #"Removed Duplicates" = Table.Distinct(#"Changed Type", {"store_nbr"}),
