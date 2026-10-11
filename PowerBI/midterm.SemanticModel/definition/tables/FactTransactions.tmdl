@@ -1,0 +1,47 @@
+table FactTransactions
+	lineageTag: a45dd1cf-00fd-46df-bae9-1e254dd6d52b
+
+	column date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 8e2de836-a367-4c15-90eb-6ded6c894373
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column store_nbr
+		dataType: int64
+		formatString: 0
+		lineageTag: 0c2aa557-20ae-48a3-b3d9-ee7731952a44
+		summarizeBy: none
+		sourceColumn: store_nbr
+
+		annotation SummarizationSetBy = Automatic
+
+	column transactions
+		dataType: int64
+		formatString: 0
+		lineageTag: 82cb0c25-ba84-419a-bce9-fde1ee1428c7
+		summarizeBy: sum
+		sourceColumn: transactions
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactTransactions = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\YOGA\Desktop\Class\01_Data_Visualization\midterm\datasets\transactions.csv"),[Delimiter=",", Columns=3, Encoding=1258, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"date", type date}, {"store_nbr", Int64.Type}, {"transactions", Int64.Type}}),
+				    #"Filtered Rows" = Table.SelectRows(#"Changed Type", each [transactions] <> null and [transactions] <> "")
+				in
+				    #"Filtered Rows"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

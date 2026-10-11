@@ -1,0 +1,76 @@
+table FactSales
+	lineageTag: b7020130-68d7-49b9-b7cf-180e4b8545de
+
+	column id
+		dataType: int64
+		formatString: 0
+		lineageTag: 24d1a07f-486b-491f-902b-a013299a24ca
+		summarizeBy: sum
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 3b7a297b-7acd-4802-8ff7-2b589b58ceb2
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column store_nbr
+		dataType: int64
+		formatString: 0
+		lineageTag: 3096f9c2-24cf-4902-8aee-e0bef7ebedb5
+		summarizeBy: none
+		sourceColumn: store_nbr
+
+		annotation SummarizationSetBy = Automatic
+
+	column family
+		dataType: string
+		lineageTag: 0198b60d-f336-4366-855b-83abcefa12e3
+		summarizeBy: none
+		sourceColumn: family
+
+		annotation SummarizationSetBy = Automatic
+
+	column sales
+		dataType: double
+		lineageTag: cc4838d9-6e11-4131-a020-6dc34f49c4d8
+		summarizeBy: sum
+		sourceColumn: sales
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column onpromotion
+		dataType: int64
+		formatString: 0
+		lineageTag: 84abb18d-9708-42f8-85a1-aacecf43773a
+		summarizeBy: sum
+		sourceColumn: onpromotion
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactSales = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\YOGA\Desktop\Class\01_Data_Visualization\midterm\datasets\train.csv"),[Delimiter=",", Columns=6, Encoding=1258, QuoteStyle=QuoteStyle.None]),
+				    #"Change Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}, {"Column2", type text}, {"Column3", type text}, {"Column4", type text}, {"Column5", type text}, {"Column6", type text}}),
+				    #"Replaced Value" = Table.ReplaceValue(#"Change Type",".",",",Replacer.ReplaceText,{"Column5"}),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Replaced Value", [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"id", Int64.Type}, {"store_nbr", Int64.Type}, {"onpromotion", Int64.Type}, {"date", type date}, {"sales", type number}}),
+				    #"Removed Duplicates" = Table.Distinct(#"Changed Type", {"id"})
+				in
+				    #"Removed Duplicates"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

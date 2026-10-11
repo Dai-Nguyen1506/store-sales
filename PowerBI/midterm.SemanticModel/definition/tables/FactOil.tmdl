@@ -1,0 +1,43 @@
+table FactOil
+	lineageTag: 77a0b778-3295-47b1-ab6e-5c302e5f3d4d
+
+	column date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: efe6f778-5501-46b7-8ba1-828256d9d395
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column dcoilwtico
+		dataType: double
+		lineageTag: a4a1fc22-3ec9-4d47-a3b4-48b51bb80b0f
+		summarizeBy: sum
+		sourceColumn: dcoilwtico
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition FactOil = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\YOGA\Desktop\Class\01_Data_Visualization\midterm\datasets\oil.csv"),[Delimiter=",", Columns=2, Encoding=1258, QuoteStyle=QuoteStyle.None]),
+				    #"Change Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}, {"Column2", type text}}),
+				    #"Replaced Value" = Table.ReplaceValue(#"Change Type",".",",",Replacer.ReplaceText,{"Column2"}),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Replaced Value", [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"date", type date}, {"dcoilwtico", type number}}),
+				    #"Filled Down" = Table.FillDown(#"Changed Type",{"dcoilwtico"}),
+				    #"Filled Up" = Table.FillUp(#"Filled Down",{"dcoilwtico"}),
+				    #"Removed Duplicates" = Table.Distinct(#"Filled Up", {"date"})
+				in
+				    #"Removed Duplicates"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

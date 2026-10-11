@@ -1,0 +1,56 @@
+table DimHolidays
+	lineageTag: 9888bf9b-7702-496a-af57-bbf1a937c9a8
+
+	column date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 723a3ccd-1607-4c4d-beae-75700474a141
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column type
+		dataType: string
+		lineageTag: 55441678-d9c9-461b-aad6-d8c6f49bb73a
+		summarizeBy: none
+		sourceColumn: type
+
+		annotation SummarizationSetBy = Automatic
+
+	column locale
+		dataType: string
+		lineageTag: d7121abd-b9f7-485e-b35e-0b83b44c0b67
+		summarizeBy: none
+		sourceColumn: locale
+
+		annotation SummarizationSetBy = Automatic
+
+	column locale_name
+		dataType: string
+		lineageTag: 3e765ba7-85ee-481e-8c43-b5e40d34ce59
+		summarizeBy: none
+		sourceColumn: locale_name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimHolidays = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\YOGA\Desktop\Class\01_Data_Visualization\midterm\datasets\holidays_events.csv"),[Delimiter=",", Columns=6, Encoding=1258, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"date", type date}, {"type", type text}, {"locale", type text}, {"locale_name", type text}, {"description", type text}, {"transferred", type logical}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"description"}),
+				    #"Filtered Rows" = Table.SelectRows(#"Removed Columns", each ([transferred] = false)),
+				    #"Removed Columns1" = Table.RemoveColumns(#"Filtered Rows",{"transferred"}),
+				    #"Filtered Rows1" = Table.SelectRows(#"Removed Columns1", each ([type] <> "Work Day"))
+				in
+				    #"Filtered Rows1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

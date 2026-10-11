@@ -1,0 +1,62 @@
+table DimStores
+	lineageTag: b08cf177-7ce3-4728-9b8e-8fbdf5fceb3b
+
+	column store_nbr
+		dataType: int64
+		formatString: 0
+		lineageTag: 98a7eed6-0456-4741-8886-9185bba64bf0
+		summarizeBy: none
+		sourceColumn: store_nbr
+
+		annotation SummarizationSetBy = Automatic
+
+	column city
+		dataType: string
+		lineageTag: 4bad6fa7-7245-4307-bedc-dec89875c56e
+		summarizeBy: none
+		sourceColumn: city
+
+		annotation SummarizationSetBy = Automatic
+
+	column state
+		dataType: string
+		lineageTag: cbd3df06-d870-4377-b78f-2f708c5413f0
+		summarizeBy: none
+		sourceColumn: state
+
+		annotation SummarizationSetBy = Automatic
+
+	column type
+		dataType: string
+		lineageTag: 76d9b217-2c85-4da2-9c0f-6978bbcb34b5
+		summarizeBy: none
+		sourceColumn: type
+
+		annotation SummarizationSetBy = Automatic
+
+	column cluster
+		dataType: int64
+		formatString: 0
+		lineageTag: 38308be3-3c83-4447-b93d-a520fde8a816
+		summarizeBy: sum
+		sourceColumn: cluster
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimStores = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\YOGA\Desktop\Class\01_Data_Visualization\midterm\datasets\stores.csv"),[Delimiter=",", Columns=5, Encoding=1258, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"store_nbr", Int64.Type}, {"city", type text}, {"state", type text}, {"type", type text}, {"cluster", Int64.Type}}),
+				    #"Removed Duplicates" = Table.Distinct(#"Changed Type", {"store_nbr"}),
+				    #"Trimmed Text" = Table.TransformColumns(#"Removed Duplicates",{{"city", Text.Trim, type text}}),
+				    #"Capitalized Each Word" = Table.TransformColumns(#"Trimmed Text",{{"city", Text.Proper, type text}})
+				in
+				    #"Capitalized Each Word"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
