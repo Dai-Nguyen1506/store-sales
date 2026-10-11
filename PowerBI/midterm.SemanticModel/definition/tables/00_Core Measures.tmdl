@@ -1,0 +1,76 @@
+table '00_Core Measures'
+	isHidden
+	lineageTag: cebb0a98-6e49-4a04-98bd-a5bd38266e02
+
+	measure 'Total Sales' =
+			
+			SUM ( FactSales[sales] )
+		lineageTag: 2da7d637-5d1b-4b03-a88d-0478c7ed3bea
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Transactions' =
+			
+			SUM ( FactTransactions[transactions] )
+		formatString: #,0
+		lineageTag: 6c76aa24-01c4-4972-aed6-f565bc9352ef
+
+	measure 'Sales LY' =
+			
+			CALCULATE (
+			    [Total Sales],
+			    SAMEPERIODLASTYEAR ( DimDate[Date] )
+			)
+		formatString: 0.00
+		lineageTag: a70fa452-314a-4dc0-9bbf-eedb36f943c0
+
+	measure 'YoY Growth %' =
+			
+			DIVIDE (
+			    [Total Sales] - [Sales LY],
+			    [Sales LY]
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 795fd862-1070-4eb9-8bbf-9935df1eca89
+
+	measure 'Sales YoY Change' =
+			
+			[Total Sales] - [Sales LY]
+		lineageTag: e5dd3bcc-d367-4ae2-b218-7b706bd426b1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Sales per Transaction' =
+			
+			DIVIDE (
+			    [Total Sales],
+			    [Total Transactions]
+			)
+		formatString: #,0.00
+		lineageTag: 72e34dff-2090-44e2-9ba8-cb15fc43dc8a
+
+	column Column1
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 75bb2d3b-baa7-43ab-94d2-6a0121247ef3
+		summarizeBy: sum
+		sourceColumn: Column1
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition '00_Core Measures' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WMlSKjQUA", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	changedProperty = IsHidden
+
+	annotation PBI_ResultType = Table
+

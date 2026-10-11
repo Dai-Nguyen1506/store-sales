@@ -8,6 +8,8 @@ table FactSales
 		summarizeBy: sum
 		sourceColumn: id
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 	column date
@@ -16,6 +18,8 @@ table FactSales
 		lineageTag: 3b7a297b-7acd-4802-8ff7-2b589b58ceb2
 		summarizeBy: none
 		sourceColumn: date
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -28,13 +32,17 @@ table FactSales
 		summarizeBy: none
 		sourceColumn: store_nbr
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
-	column family
+	column ProductFamily
 		dataType: string
 		lineageTag: 0198b60d-f336-4366-855b-83abcefa12e3
 		summarizeBy: none
-		sourceColumn: family
+		sourceColumn: ProductFamily
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -43,6 +51,8 @@ table FactSales
 		lineageTag: cc4838d9-6e11-4131-a020-6dc34f49c4d8
 		summarizeBy: sum
 		sourceColumn: sales
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -55,20 +65,24 @@ table FactSales
 		summarizeBy: sum
 		sourceColumn: onpromotion
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 	partition FactSales = m
 		mode: import
 		source =
 				let
-				    Source = Csv.Document(File.Contents(RootPath & "datasets\train.csv"),[Delimiter=",", Columns=6, Encoding=1258, QuoteStyle=QuoteStyle.None]),
+				    Source = Csv.Document(File.Contents(RootPath & "\datasets\train.csv"),[Delimiter=",", Columns=6, Encoding=1258, QuoteStyle=QuoteStyle.None]),
 				    #"Change Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}, {"Column2", type text}, {"Column3", type text}, {"Column4", type text}, {"Column5", type text}, {"Column6", type text}}),
 				    #"Replaced Value" = Table.ReplaceValue(#"Change Type",".",",",Replacer.ReplaceText,{"Column5"}),
 				    #"Promoted Headers" = Table.PromoteHeaders(#"Replaced Value", [PromoteAllScalars=true]),
 				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"id", Int64.Type}, {"store_nbr", Int64.Type}, {"onpromotion", Int64.Type}, {"date", type date}, {"sales", type number}}),
-				    #"Removed Duplicates" = Table.Distinct(#"Changed Type", {"id"})
+				    #"Removed Duplicates" = Table.Distinct(#"Changed Type", {"id"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Duplicates",{{"family", "ProductFamily"}}),
+				    #"Trimmed Text" = Table.TransformColumns(#"Renamed Columns",{{"ProductFamily", Text.Trim, type text}})
 				in
-				    #"Removed Duplicates"
+				    #"Trimmed Text"
 
 	annotation PBI_NavigationStepName = Navigation
 

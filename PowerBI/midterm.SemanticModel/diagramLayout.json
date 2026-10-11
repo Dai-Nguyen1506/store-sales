@@ -4,14 +4,14 @@
     {
       "ordinal": 0,
       "scrollPosition": {
-        "x": 0,
+        "x": 101.36163941535983,
         "y": 0
       },
       "nodes": [
         {
           "location": {
-            "x": 821.36163941535983,
-            "y": 433
+            "x": 937.36163941535983,
+            "y": 302
           },
           "nodeIndex": "DimHolidays",
           "nodeLineageTag": "9888bf9b-7702-496a-af57-bbf1a937c9a8",
@@ -19,12 +19,12 @@
             "height": 176,
             "width": 234
           },
-          "zIndex": 1
+          "zIndex": 2
         },
         {
           "location": {
-            "x": 2.18475118062986,
-            "y": 7
+            "x": 294.18475118062986,
+            "y": 0
           },
           "nodeIndex": "DimStores",
           "nodeLineageTag": "b08cf177-7ce3-4728-9b8e-8fbdf5fceb3b",
@@ -32,12 +32,12 @@
             "height": 200,
             "width": 234
           },
-          "zIndex": 2
+          "zIndex": 6
         },
         {
           "location": {
-            "x": 667.36163941535983,
-            "y": 171
+            "x": 962.36163941535983,
+            "y": 94
           },
           "nodeIndex": "FactOil",
           "nodeLineageTag": "77a0b778-3295-47b1-ab6e-5c302e5f3d4d",
@@ -49,8 +49,8 @@
         },
         {
           "location": {
-            "x": 16.361639415359946,
-            "y": 377
+            "x": 292.36163941535995,
+            "y": 431
           },
           "nodeIndex": "FactSales",
           "nodeLineageTag": "b7020130-68d7-49b9-b7cf-180e4b8545de",
@@ -62,7 +62,7 @@
         },
         {
           "location": {
-            "x": 426,
+            "x": 608,
             "y": 0
           },
           "nodeIndex": "FactTransactions",
@@ -75,16 +75,42 @@
         },
         {
           "location": {
-            "x": 409.36163941535983,
-            "y": 393.83124815810862
+            "x": 595.36163941535983,
+            "y": 247.83124815810862
           },
           "nodeIndex": "DimDate",
           "nodeLineageTag": "3749b3d7-ac4b-4516-8752-9d5a5933298b",
           "size": {
-            "height": 200,
+            "height": 419,
             "width": 234
           },
-          "zIndex": 6
+          "zIndex": 7
+        },
+        {
+          "location": {
+            "x": 62,
+            "y": 233.41562407905428
+          },
+          "nodeIndex": "DimProduct",
+          "nodeLineageTag": "5c933043-76e1-4216-93d4-3e5d8941c2d2",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 1184.3616394153598,
+            "y": 281.41562407905428
+          },
+          "nodeIndex": "00_Core Measures",
+          "nodeLineageTag": "cebb0a98-6e49-4a04-98bd-a5bd38266e02",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
         }
       ],
       "name": "All tables",

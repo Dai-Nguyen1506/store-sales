@@ -1,3 +1,13 @@
+# Power BI local/cache
 **/.pbi/localSettings.json
 **/.pbi/cache.abf
+
+# Datasets
 datasets/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/

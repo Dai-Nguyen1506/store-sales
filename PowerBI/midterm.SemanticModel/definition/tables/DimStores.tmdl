@@ -8,6 +8,8 @@ table DimStores
 		summarizeBy: none
 		sourceColumn: store_nbr
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 	column city
@@ -15,6 +17,8 @@ table DimStores
 		lineageTag: 4bad6fa7-7245-4307-bedc-dec89875c56e
 		summarizeBy: none
 		sourceColumn: city
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -24,6 +28,8 @@ table DimStores
 		summarizeBy: none
 		sourceColumn: state
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 	column type
@@ -31,6 +37,8 @@ table DimStores
 		lineageTag: 76d9b217-2c85-4da2-9c0f-6978bbcb34b5
 		summarizeBy: none
 		sourceColumn: type
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -41,20 +49,23 @@ table DimStores
 		summarizeBy: sum
 		sourceColumn: cluster
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 	partition DimStores = m
 		mode: import
 		source =
 				let
-				    Source = Csv.Document(File.Contents(RootPath & "datasets\stores.csv"),[Delimiter=",", Columns=5, Encoding=1258, QuoteStyle=QuoteStyle.None]),
+				    Source = Csv.Document(File.Contents(RootPath & "\datasets\stores.csv"),[Delimiter=",", Columns=5, Encoding=1258, QuoteStyle=QuoteStyle.None]),
 				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
 				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"store_nbr", Int64.Type}, {"city", type text}, {"state", type text}, {"type", type text}, {"cluster", Int64.Type}}),
 				    #"Removed Duplicates" = Table.Distinct(#"Changed Type", {"store_nbr"}),
 				    #"Trimmed Text" = Table.TransformColumns(#"Removed Duplicates",{{"city", Text.Trim, type text}}),
-				    #"Capitalized Each Word" = Table.TransformColumns(#"Trimmed Text",{{"city", Text.Proper, type text}})
+				    #"Capitalized Each Word" = Table.TransformColumns(#"Trimmed Text",{{"city", Text.Proper, type text}}),
+				    #"Trimmed Text1" = Table.TransformColumns(#"Capitalized Each Word",{{"state", Text.Trim, type text}, {"type", Text.Trim, type text}})
 				in
-				    #"Capitalized Each Word"
+				    #"Trimmed Text1"
 
 	annotation PBI_NavigationStepName = Navigation
 

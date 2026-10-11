@@ -8,6 +8,8 @@ table FactTransactions
 		summarizeBy: none
 		sourceColumn: date
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 		annotation UnderlyingDateTimeDataType = Date
@@ -19,6 +21,8 @@ table FactTransactions
 		summarizeBy: none
 		sourceColumn: store_nbr
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 	column transactions
@@ -28,13 +32,15 @@ table FactTransactions
 		summarizeBy: sum
 		sourceColumn: transactions
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 	partition FactTransactions = m
 		mode: import
 		source =
 				let
-				    Source = Csv.Document(File.Contents(RootPath & "datasets\transactions.csv"),[Delimiter=",", Columns=3, Encoding=1258, QuoteStyle=QuoteStyle.None]),
+				    Source = Csv.Document(File.Contents(RootPath & "\datasets\transactions.csv"),[Delimiter=",", Columns=3, Encoding=1258, QuoteStyle=QuoteStyle.None]),
 				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
 				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"date", type date}, {"store_nbr", Int64.Type}, {"transactions", Int64.Type}}),
 				    #"Filtered Rows" = Table.SelectRows(#"Changed Type", each [transactions] <> null and [transactions] <> "")

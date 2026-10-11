@@ -1,41 +1,54 @@
 table FactOil
-	lineageTag: 77a0b778-3295-47b1-ab6e-5c302e5f3d4d
+	lineageTag: ac04190b-80fd-416b-bdf5-8f93731f3cee
 
 	column date
 		dataType: dateTime
 		formatString: Long Date
-		lineageTag: efe6f778-5501-46b7-8ba1-828256d9d395
+		lineageTag: 9583cda3-1422-4957-bacd-f2aae966914c
 		summarizeBy: none
 		sourceColumn: date
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
 		annotation UnderlyingDateTimeDataType = Date
 
-	column dcoilwtico
+	column OilPrice
 		dataType: double
-		lineageTag: a4a1fc22-3ec9-4d47-a3b4-48b51bb80b0f
+		lineageTag: 30888221-fc4c-46a9-acaf-1f335b694daf
 		summarizeBy: sum
-		sourceColumn: dcoilwtico
+		sourceColumn: OilPrice
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
+	column OilPriceStatus
+		dataType: string
+		lineageTag: 1067cbca-7529-4e60-a551-1eda068cb0d1
+		summarizeBy: none
+		sourceColumn: OilPriceStatus
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
 	partition FactOil = m
 		mode: import
 		source =
 				let
-				    Source = Csv.Document(File.Contents(RootPath & "datasets\oil.csv"),[Delimiter=",", Columns=2, Encoding=1258, QuoteStyle=QuoteStyle.None]),
-				    #"Change Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}, {"Column2", type text}}),
-				    #"Replaced Value" = Table.ReplaceValue(#"Change Type",".",",",Replacer.ReplaceText,{"Column2"}),
-				    #"Promoted Headers" = Table.PromoteHeaders(#"Replaced Value", [PromoteAllScalars=true]),
-				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"date", type date}, {"dcoilwtico", type number}}),
-				    #"Filled Down" = Table.FillDown(#"Changed Type",{"dcoilwtico"}),
-				    #"Filled Up" = Table.FillUp(#"Filled Down",{"dcoilwtico"}),
-				    #"Removed Duplicates" = Table.Distinct(#"Filled Up", {"date"})
+				    Source = Table.NestedJoin(OilCalendar, {"date"}, FactOil_Raw, {"date"}, "FactOil_Raw", JoinKind.LeftOuter),
+				    #"Expanded FactOil_Raw" = Table.ExpandTableColumn(Source, "FactOil_Raw", {"dcoilwtico"}, {"dcoilwtico"}),
+				    #"Added Custom" = Table.AddColumn(#"Expanded FactOil_Raw", "OilPriceStatus", each if [dcoilwtico] = null then "Imputed" else "Observed"),
+				    #"Sorted Rows" = Table.Sort(#"Added Custom",{{"date", Order.Ascending}}),
+				    #"Filled Down" = Table.FillDown(#"Sorted Rows",{"dcoilwtico"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Filled Down",{{"dcoilwtico", "OilPrice"}}),
+				    #"Filled Up" = Table.FillUp(#"Renamed Columns",{"OilPrice"})
 				in
-				    #"Removed Duplicates"
+				    #"Filled Up"
 
 	annotation PBI_NavigationStepName = Navigation
 

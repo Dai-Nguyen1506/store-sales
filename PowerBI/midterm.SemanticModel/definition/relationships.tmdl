@@ -1,26 +1,30 @@
-relationship AutoDetected_43846090-d1ed-423c-ae23-2e76faca6f04
+relationship d8bbc79e-0877-eaca-cf01-8259a36c5ee6
+	fromColumn: FactSales.date
+	toColumn: DimDate.Date
+
+relationship 36bc17a4-2f78-84a2-76f1-563050fd8044
+	fromColumn: FactTransactions.date
+	toColumn: DimDate.Date
+
+relationship a2bb6027-8029-3d27-8f2f-ecfad565686b
+	fromColumn: DimHolidays.date
+	toColumn: DimDate.Date
+
+relationship 25c1245a-ace2-59ba-8e76-4a92a6a77d93
 	fromColumn: FactSales.store_nbr
 	toColumn: DimStores.store_nbr
 
-relationship AutoDetected_9ead3580-4ec7-4a23-9d2b-ed55958a16d2
+relationship 22fb5bea-209c-6f28-ec84-2c4a8affd3e0
 	fromColumn: FactTransactions.store_nbr
 	toColumn: DimStores.store_nbr
 
-relationship bd31664e-d355-6b02-2612-e937e36f0d88
+relationship 00461b98-d3a5-d425-3d42-95817ec1dca8
+	fromColumn: FactSales.ProductFamily
+	toColumn: DimProduct.ProductFamily
+
+relationship af2ba74a-4622-e9a2-8d2b-e43efbaa2318
 	crossFilteringBehavior: bothDirections
 	fromCardinality: one
 	fromColumn: DimDate.Date
 	toColumn: FactOil.date
-
-relationship 95edbe8a-7990-56ff-242a-dfffa3eb7c62
-	fromColumn: DimHolidays.date
-	toColumn: DimDate.Date
-
-relationship aa1e9d12-db33-a71e-a1fc-4ae015c92592
-	fromColumn: FactSales.date
-	toColumn: DimDate.Date
-
-relationship c7c7186f-a4d2-c1dd-3581-4fa1df25c477
-	fromColumn: FactTransactions.date
-	toColumn: DimDate.Date
 

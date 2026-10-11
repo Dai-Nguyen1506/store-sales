@@ -8,6 +8,8 @@ table DimHolidays
 		summarizeBy: none
 		sourceColumn: date
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 		annotation UnderlyingDateTimeDataType = Date
@@ -18,6 +20,8 @@ table DimHolidays
 		summarizeBy: none
 		sourceColumn: type
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 	column locale
@@ -25,6 +29,8 @@ table DimHolidays
 		lineageTag: d7121abd-b9f7-485e-b35e-0b83b44c0b67
 		summarizeBy: none
 		sourceColumn: locale
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -34,21 +40,24 @@ table DimHolidays
 		summarizeBy: none
 		sourceColumn: locale_name
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 	partition DimHolidays = m
 		mode: import
 		source =
 				let
-				    Source = Csv.Document(File.Contents(RootPath & "datasets\holidays_events.csv"),[Delimiter=",", Columns=6, Encoding=1258, QuoteStyle=QuoteStyle.None]),
+				    Source = Csv.Document(File.Contents(RootPath & "\datasets\holidays_events.csv"),[Delimiter=",", Columns=6, Encoding=1258, QuoteStyle=QuoteStyle.None]),
 				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
 				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"date", type date}, {"type", type text}, {"locale", type text}, {"locale_name", type text}, {"description", type text}, {"transferred", type logical}}),
 				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"description"}),
 				    #"Filtered Rows" = Table.SelectRows(#"Removed Columns", each ([transferred] = false)),
 				    #"Removed Columns1" = Table.RemoveColumns(#"Filtered Rows",{"transferred"}),
-				    #"Filtered Rows1" = Table.SelectRows(#"Removed Columns1", each ([type] <> "Work Day"))
+				    #"Filtered Rows1" = Table.SelectRows(#"Removed Columns1", each ([type] <> "Work Day")),
+				    #"Trimmed Text" = Table.TransformColumns(#"Filtered Rows1",{{"type", Text.Trim, type text}, {"locale", Text.Trim, type text}, {"locale_name", Text.Trim, type text}})
 				in
-				    #"Filtered Rows1"
+				    #"Trimmed Text"
 
 	annotation PBI_NavigationStepName = Navigation
 

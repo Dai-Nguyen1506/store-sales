@@ -4,7 +4,7 @@ table DimDate
 
 	column Date
 		isKey
-		formatString: General Date
+		formatString: Short Date
 		lineageTag: 60cb53e9-0418-4420-83a7-2c2b12073f99
 		summarizeBy: none
 		isNameInferred
@@ -34,6 +34,7 @@ table DimDate
 		summarizeBy: none
 		isNameInferred
 		sourceColumn: [Month]
+		sortByColumn: 'Month No'
 
 		annotation SummarizationSetBy = Automatic
 
@@ -51,6 +52,7 @@ table DimDate
 		summarizeBy: none
 		isNameInferred
 		sourceColumn: [Year Month]
+		sortByColumn: 'Year Month Sort'
 
 		annotation SummarizationSetBy = Automatic
 

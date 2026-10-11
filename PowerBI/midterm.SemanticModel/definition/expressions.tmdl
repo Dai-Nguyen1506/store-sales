@@ -1,7 +1,71 @@
-expression RootPath = "C:\Users\YOGA\Desktop\Class\01_Data_Visualization\midterm\" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+expression RootPath = "C:\Users\YOGA\Desktop\Class\01_Data_Visualization\midterm" meta [IsParameterQuery=true, List={"C:\Users\YOGA\Desktop\Class\01_Data_Visualization\midterm"}, DefaultValue="C:\Users\YOGA\Desktop\Class\01_Data_Visualization\midterm", Type="Text", IsParameterQueryRequired=true]
 	lineageTag: 14cd6285-8a18-421b-b3d6-dffc5b578bee
 
 	annotation PBI_NavigationStepName = Navigation
 
 	annotation PBI_ResultType = Text
+
+expression FactOil_Raw =
+		let
+		    Source = Csv.Document(File.Contents(RootPath & "\datasets\oil.csv"),[Delimiter=",", Columns=2, Encoding=1258, QuoteStyle=QuoteStyle.None]),
+		    #"Change Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}, {"Column2", type text}}),
+		    #"Replaced Value" = Table.ReplaceValue(#"Change Type",".",",",Replacer.ReplaceText,{"Column2"}),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Replaced Value", [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"date", type date}, {"dcoilwtico", type number}}),
+		    #"Filled Down" = Table.FillDown(#"Changed Type",{"dcoilwtico"})
+		in
+		    #"Filled Down"
+	lineageTag: 02240f06-6d30-4063-a451-2132b01453c4
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression OilCalendar =
+		let
+		    StartDate = List.Min(FactOil_Raw[date]),
+		    EndDate = List.Max(FactOil_Raw[date]),
+		
+		    DateList =
+		        List.Dates(
+		            StartDate,
+		            Duration.Days(EndDate - StartDate) + 1,
+		            #duration(1, 0, 0, 0)
+		        ),
+		
+		    ToTable =
+		        Table.FromList(
+		            DateList,
+		            Splitter.SplitByNothing(),
+		            {"date"}
+		        ),
+		
+		    ChangeType =
+		        Table.TransformColumnTypes(
+		            ToTable,
+		            {{"date", type date}}
+		        )
+		in
+		    ChangeType
+	lineageTag: e5fe0a68-030b-4d8f-9eaa-be3b51c98d16
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression FactOil_Old =
+		let
+		    Source = Csv.Document(File.Contents(RootPath & "\datasets\oil.csv"),[Delimiter=",", Columns=2, Encoding=1258, QuoteStyle=QuoteStyle.None]),
+		    #"Change Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}, {"Column2", type text}}),
+		    #"Replaced Value" = Table.ReplaceValue(#"Change Type",".",",",Replacer.ReplaceText,{"Column2"}),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Replaced Value", [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"date", type date}, {"dcoilwtico", type number}}),
+		    #"Filled Down" = Table.FillDown(#"Changed Type",{"dcoilwtico"})
+		in
+		    #"Filled Down"
+	lineageTag: 0a120e9f-ef89-4823-99cb-219873c07e1e
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
 
