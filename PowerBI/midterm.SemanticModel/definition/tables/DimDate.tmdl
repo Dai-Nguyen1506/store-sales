@@ -15,11 +15,11 @@ table DimDate
 	column Year
 		formatString: 0
 		lineageTag: 0ee26c60-b17b-4206-9728-c6b145bc9d7b
-		summarizeBy: sum
+		summarizeBy: none
 		isNameInferred
 		sourceColumn: [Year]
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column Quarter
 		lineageTag: ad78ab60-4659-49d7-adcf-4cf3bf439c11

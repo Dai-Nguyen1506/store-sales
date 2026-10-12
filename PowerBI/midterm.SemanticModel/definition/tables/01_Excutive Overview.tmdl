@@ -1,0 +1,121 @@
+table '01_Excutive Overview'
+	lineageTag: c14a89ba-e5ca-4bcf-8376-3d0deda2657c
+
+	measure 'MoM %' = ```
+			
+			VAR CurrentLastDate = [OV Last Data Date] 
+			VAR CurrentMonthStart = DATE(YEAR(CurrentLastDate), MONTH(CurrentLastDate), 1)
+			
+			VAR LastMonthSameDay = EDATE(CurrentLastDate, -1)
+			VAR LastMonthStart = DATE(YEAR(LastMonthSameDay), MONTH(LastMonthSameDay), 1)
+			
+			VAR SalesThisMonth = 
+			    CALCULATE(
+			        [Total Sales],
+			        DimDate[Date] >= CurrentMonthStart && DimDate[Date] <= CurrentLastDate
+			    )
+			    
+			VAR SalesLastMonth = 
+			    CALCULATE(
+			        [Total Sales],
+			        DimDate[Date] >= LastMonthStart && DimDate[Date] <= LastMonthSameDay
+			    )
+			    
+			RETURN
+			DIVIDE(SalesThisMonth - SalesLastMonth, SalesLastMonth)
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 3f95d513-9457-43f1-ace4-f0a6d4f8492b
+
+	measure 'OV Active Stores' = DISTINCTCOUNT(FactTransactions[store_nbr])
+		formatString: 0
+		lineageTag: 53c72463-e2d6-4b07-a6d4-cf584c0c8b07
+
+	measure 'OV Avg Sales per Store-Day' = DIVIDE([Total Sales], COUNTROWS(FactTransactions))
+		lineageTag: 571a9f1a-ccf4-409e-9c9c-4a2eeb5ab063
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'OV Avg Sales per Store-Day (ex PRODUCE)' =
+			
+			CALCULATE (
+			    [OV Avg Sales per Store-Day],
+			    DimProduct[ProductFamily] <> "PRODUCE"
+			)
+		lineageTag: e5e5e8c0-5d1e-4ae3-b13e-22b0c20db1b2
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Sales YoY % (ex PRODUCE)' =
+			
+			CALCULATE([YoY Growth %], DimProduct[ProductFamily] <> "PRODUCE")
+		lineageTag: 55820ff4-3ef1-4ce5-aeea-1779139ed7d4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'OV Last Data Date' = MAX(FactSales[date])
+		formatString: General Date
+		lineageTag: 6bfbef76-c547-402a-b9b9-52eb1ac6c884
+
+	measure 'OV Txn PY (LFL)' = ```
+			
+			VAR LastYearEndDate = EDATE([OV Last Data Date], -12)
+			RETURN 
+			CALCULATE(
+			    [Total Transactions],
+			    DimDate[Date] <= LastYearEndDate,
+			    DATEADD(DimDate[Date], -1, YEAR)
+			)
+			```
+		formatString: 0
+		lineageTag: 79f1ba88-2da6-456c-ba32-c7bbf54fde2d
+
+	measure 'Txn YoY %' =
+			
+			DIVIDE([Total Transactions] - [OV Txn PY (LFL)], [OV Txn PY (LFL)])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 5926b34e-4ae1-4ed3-907f-e71158d86ac4
+
+	measure 'Sales per Txn YoY %' = ```
+			
+			VAR LastYearEndDate = EDATE([OV Last Data Date], -12)
+			VAR SalesPY_LFL = 
+			    CALCULATE(
+			        [Total Sales],
+			        DimDate[Date] <= LastYearEndDate,
+			        DATEADD(DimDate[Date], -1, YEAR)
+			    )
+			VAR SalesPerTxn_PY = DIVIDE(SalesPY_LFL, [OV Txn PY (LFL)])
+			RETURN 
+			DIVIDE([Sales per Transaction] - SalesPerTxn_PY, SalesPerTxn_PY)
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 25047372-7576-420d-ba4a-4aa97a6a259c
+
+	measure 'Sales YoY Change' =
+			
+			[Total Sales] - [Sales LY]
+		lineageTag: 1e3b2288-1de4-4eb4-840c-bf14f4b07c41
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Coloume 1'
+		dataType: int64
+		formatString: 0
+		lineageTag: dfe9ce04-aa50-46ad-b2e9-9ec4a2d5b6ec
+		summarizeBy: sum
+		sourceColumn: Coloume 1
+
+		annotation SummarizationSetBy = Automatic
+
+	partition '01_Excutive Overview' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WMlSKjQUA", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Coloume 1" = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Coloume 1", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

@@ -4,10 +4,10 @@
   "position": {
     "x": 1369.9696048632218,
     "y": 14.589665653495441,
-    "z": 2,
+    "z": 2000,
     "height": 1065.0455927051671,
     "width": 550.03039513677811,
-    "tabOrder": 2
+    "tabOrder": 2000
   },
   "visual": {
     "visualType": "tableEx",
@@ -93,65 +93,5 @@
       }
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "029f33896e4bd544ec72",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "DimStores"
-              }
-            },
-            "Property": "store_nbr"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "19992bd860ea9c54314d",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "00_Core Measures"
-              }
-            },
-            "Property": "Total Sales"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "1d1e320e9c08ba239320",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "00_Core Measures"
-              }
-            },
-            "Property": "Total Transactions"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "14b8009450f50f7f6b4e",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "00_Core Measures"
-              }
-            },
-            "Property": "Sales per Transaction"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

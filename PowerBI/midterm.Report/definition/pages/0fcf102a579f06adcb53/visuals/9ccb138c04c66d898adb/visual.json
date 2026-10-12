@@ -1,0 +1,59 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "9ccb138c04c66d898adb",
+  "position": {
+    "x": 1515,
+    "y": 701.66666666666674,
+    "z": 10000,
+    "height": 281.66666666666669,
+    "width": 376.66666666666669,
+    "tabOrder": 10000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "- Sales rose by 10.0% compared to the same period in 2017, driven by both transaction volume (+4.8%) and value per transaction (+4.9%).",
+                    "textStyle": {
+                      "fontFamily": "Times New Roman",
+                      "fontSize": "14pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "- Growth was not solely due to store openings; sales per store-day increased by a factor of 1.64 compared to 2013 (excluding the PRODUCE category).",
+                    "textStyle": {
+                      "fontFamily": "Times New Roman",
+                      "fontSize": "14pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "- Year-over-year figures for 2014 and 2016 were inflated due to missing PRODUCE data; therefore, the 2017 year-over-year figure serves as the primary evidence.",
+                    "textStyle": {
+                      "fontFamily": "Times New Roman",
+                      "fontSize": "14pt"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}
