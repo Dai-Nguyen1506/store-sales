@@ -1,0 +1,37 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "92d5adf979eda7f5c75e",
+  "position": {
+    "x": 1347.6106194690265,
+    "y": 60.530973451327434,
+    "z": 10001,
+    "height": 149.73451327433628,
+    "width": 541.59292035398232,
+    "tabOrder": 10001
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "- Data for 2017 covers the period up to August 15 only. Year-over-year (YoY) and month-over-month (MoM) figures are compared against the corresponding periods.",
+                    "textStyle": {
+                      "fontFamily": "Times New Roman",
+                      "fontSize": "12pt"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -4,5 +4,84 @@
   "displayName": "Executive Overview",
   "displayOption": "FitToPage",
   "height": 1080,
-  "width": 1920
+  "width": 1920,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "b4821fb7ddeae8e32311",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimDate"
+              }
+            },
+            "Property": "Year"
+          }
+        },
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "d",
+              "Entity": "DimDate",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "Comparison": {
+                      "ComparisonKind": 0,
+                      "Left": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Source": "d"
+                            }
+                          },
+                          "Property": "Year"
+                        }
+                      },
+                      "Right": {
+                        "Literal": {
+                          "Value": "null"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "15feb8c7e01e9a156ab6",
+      "target": "acfa678c5eabe95ed8e4",
+      "type": "NoFilter"
+    },
+    {
+      "source": "15feb8c7e01e9a156ab6",
+      "target": "2eb826226ebfeb12872d",
+      "type": "NoFilter"
+    },
+    {
+      "source": "15feb8c7e01e9a156ab6",
+      "target": "53c03d895fe1a3881836",
+      "type": "NoFilter"
+    },
+    {
+      "source": "15feb8c7e01e9a156ab6",
+      "target": "257a4d13fb044c6e0843",
+      "type": "NoFilter"
+    }
+  ]
 }

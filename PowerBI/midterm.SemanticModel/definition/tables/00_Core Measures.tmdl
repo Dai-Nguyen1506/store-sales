@@ -5,14 +5,15 @@ table '00_Core Measures'
 	measure 'Total Sales' =
 			
 			SUM ( FactSales[sales] )
+		formatString: #,0
 		lineageTag: 2da7d637-5d1b-4b03-a88d-0478c7ed3bea
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
+		annotation PBI_FormatHint = {"isDecimal":true}
 
 	measure 'Total Transactions' =
 			
 			SUM ( FactTransactions[transactions] )
-		formatString: #,0
+		formatString: #,0.00
 		lineageTag: 6c76aa24-01c4-4972-aed6-f565bc9352ef
 
 	measure 'Sales LY' =
@@ -24,12 +25,21 @@ table '00_Core Measures'
 		formatString: 0.00
 		lineageTag: a70fa452-314a-4dc0-9bbf-eedb36f943c0
 
-	measure 'YoY Growth %' =
+	measure 'YoY Growth %' = ```
 			
-			DIVIDE (
-			    [Total Sales] - [Sales LY],
-			    [Sales LY]
-			)
+			VAR CurrentLastDate = [OV Last Data Date]
+			VAR LastYearEndDate = EDATE(CurrentLastDate, -12)
+			
+			VAR SalesPY_LFL = 
+			    CALCULATE(
+			        [Total Sales],
+			        DimDate[Date] <= LastYearEndDate,
+			        DATEADD(DimDate[Date], -1, YEAR)
+			    )
+			
+			RETURN 
+			DIVIDE([Total Sales] - SalesPY_LFL, SalesPY_LFL)
+			```
 		formatString: 0.0%;-0.0%;0.0%
 		lineageTag: 795fd862-1070-4eb9-8bbf-9935df1eca89
 
@@ -48,6 +58,97 @@ table '00_Core Measures'
 			)
 		formatString: #,0.00
 		lineageTag: 72e34dff-2090-44e2-9ba8-cb15fc43dc8a
+
+	measure 'OV Active Stores' = DISTINCTCOUNT(FactTransactions[store_nbr])
+		formatString: 0
+		lineageTag: 0ac05d15-c5ae-42b3-8e8e-321c0d000f61
+
+	measure 'OV Avg Sales per Store-Day' = DIVIDE([Total Sales], COUNTROWS(FactTransactions))
+		lineageTag: dbd4cd28-bc94-4969-bd96-2b2412c090f8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'OV Avg Sales per Store-Day (ex PRODUCE)' =
+			
+			CALCULATE (
+			    [OV Avg Sales per Store-Day],
+			    DimProduct[ProductFamily] <> "PRODUCE"
+			)
+		lineageTag: be4f9fee-7265-4010-a252-a8723b3d5dd8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'MoM %' = ```
+			
+			VAR CurrentLastDate = [OV Last Data Date] 
+			VAR CurrentMonthStart = DATE(YEAR(CurrentLastDate), MONTH(CurrentLastDate), 1)
+			
+			VAR LastMonthSameDay = EDATE(CurrentLastDate, -1)
+			VAR LastMonthStart = DATE(YEAR(LastMonthSameDay), MONTH(LastMonthSameDay), 1)
+			
+			VAR SalesThisMonth = 
+			    CALCULATE(
+			        [Total Sales],
+			        DimDate[Date] >= CurrentMonthStart && DimDate[Date] <= CurrentLastDate
+			    )
+			    
+			VAR SalesLastMonth = 
+			    CALCULATE(
+			        [Total Sales],
+			        DimDate[Date] >= LastMonthStart && DimDate[Date] <= LastMonthSameDay
+			    )
+			    
+			RETURN
+			DIVIDE(SalesThisMonth - SalesLastMonth, SalesLastMonth)
+			```
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 46a272c7-a5e3-4aac-945d-4e7f0f025481
+
+	measure 'Txn YoY %' =
+			
+			DIVIDE([Total Transactions] - [OV Txn PY (LFL)], [OV Txn PY (LFL)])
+		formatString: #,0.0%;-#,0.0%;#,0.0%
+		lineageTag: 8e91f900-8f55-4d4b-ad27-91081e93d373
+
+	measure 'Sales per Txn YoY %' = ```
+			
+			VAR LastYearEndDate = EDATE([OV Last Data Date], -12)
+			VAR SalesPY_LFL = 
+			    CALCULATE(
+			        [Total Sales],
+			        DimDate[Date] <= LastYearEndDate,
+			        DATEADD(DimDate[Date], -1, YEAR)
+			    )
+			VAR SalesPerTxn_PY = DIVIDE(SalesPY_LFL, [OV Txn PY (LFL)])
+			RETURN 
+			DIVIDE([Sales per Transaction] - SalesPerTxn_PY, SalesPerTxn_PY)
+			```
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 8b6e94bd-5c33-434b-b7ca-74089158b40c
+
+	measure 'Sales YoY % (ex PRODUCE)' =
+			
+			CALCULATE([YoY Growth %], DimProduct[ProductFamily] <> "PRODUCE")
+		lineageTag: d0ebd175-dcf9-4efe-b6f0-aeb13d89e0e2
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'OV Last Data Date' = MAX(FactSales[date])
+		formatString: General Date
+		lineageTag: 167ddae2-3fb1-4277-a17e-1d8a2dd9595f
+
+	measure 'OV Txn PY (LFL)' = ```
+			
+			VAR LastYearEndDate = EDATE([OV Last Data Date], -12)
+			RETURN 
+			CALCULATE(
+			    [Total Transactions],
+			    DimDate[Date] <= LastYearEndDate,
+			    DATEADD(DimDate[Date], -1, YEAR)
+			)
+			```
+		formatString: 0
+		lineageTag: bbd58c90-58f6-4f30-9175-9fcaa88a8221
 
 	column Column1
 		dataType: int64
