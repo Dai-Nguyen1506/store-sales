@@ -4,10 +4,10 @@
   "position": {
     "x": 0,
     "y": 119.63525835866261,
-    "z": 4,
+    "z": 4000,
     "height": 466.86930091185411,
     "width": 920.60790273556233,
-    "tabOrder": 4
+    "tabOrder": 4000
   },
   "visual": {
     "visualType": "lineChart",
@@ -237,84 +237,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "fc1608ef79e22cbc00ca",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "00_Core Measures"
-              }
-            },
-            "Property": "Total Sales"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "a9edb0eb4313a62e0d04",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "02_Trend Measures"
-              }
-            },
-            "Property": "MoM Growth %"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "d9e18c01a26ea9f48cc3",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "00_Core Measures"
-              }
-            },
-            "Property": "YoY Growth %"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "de85d3b27c3c2dfe114e",
-        "field": {
-          "Aggregation": {
-            "Expression": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "FactTransactions"
-                  }
-                },
-                "Property": "transactions"
-              }
-            },
-            "Function": 0
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "e168fb1acfef70bd3f0a",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "DimDate"
-              }
-            },
-            "Property": "Month Start"
-          }
-        },
-        "type": "Categorical"
-      }
-    ]
   }
 }

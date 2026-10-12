@@ -110,6 +110,16 @@ table '00_Core Measures'
 
 		changedProperty = IsHidden
 
+	measure 'Avg Promotion Items' =
+			
+			AVERAGEX (
+			    VALUES ( DimDate[Date] ),
+			    [Promotion Items]
+			)
+		lineageTag: 0f22d579-0795-44d1-9820-68f8f7160381
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
 	column Column = 1
 		isHidden
 		formatString: 0

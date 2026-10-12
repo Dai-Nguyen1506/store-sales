@@ -1,0 +1,284 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "a28877652b4fb83b55c2",
+  "position": {
+    "x": 1162.4382207578253,
+    "y": 542.47116968698515,
+    "z": 3000,
+    "height": 537.7265238879736,
+    "width": 757.56177924217457,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "lineClusteredColumnComboChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimHolidays"
+                    }
+                  },
+                  "Property": "type"
+                }
+              },
+              "queryRef": "DimHolidays.type",
+              "nativeQueryRef": "type",
+              "active": true
+            }
+          ]
+        },
+        "Tooltips": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "05_Driver Measures"
+                    }
+                  },
+                  "Property": "National Event Days"
+                }
+              },
+              "queryRef": "05_Driver Measures.National Event Days",
+              "nativeQueryRef": "National Event Days"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "05_Driver Measures"
+                    }
+                  },
+                  "Property": "National Event Sales"
+                }
+              },
+              "queryRef": "05_Driver Measures.National Event Sales",
+              "nativeQueryRef": "National Event Sales"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "05_Driver Measures"
+                    }
+                  },
+                  "Property": "National Event vs Normal %"
+                }
+              },
+              "queryRef": "05_Driver Measures.National Event vs Normal %",
+              "nativeQueryRef": "National Event vs Normal %"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "05_Driver Measures"
+                    }
+                  },
+                  "Property": "Avg Sales per National Event Day"
+                }
+              },
+              "queryRef": "05_Driver Measures.Avg Sales per National Event Day",
+              "nativeQueryRef": "Avg Sales per National Event Day"
+            }
+          ]
+        },
+        "Y2": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "05_Driver Measures"
+                    }
+                  },
+                  "Property": "Avg Sales per Normal Day"
+                }
+              },
+              "queryRef": "05_Driver Measures.Avg Sales per Normal Day",
+              "nativeQueryRef": "Avg Sales per Normal Day"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "05_Driver Measures"
+                  }
+                },
+                "Property": "Avg Sales per National Event Day"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1000D"
+                }
+              }
+            },
+            "labelPrecision": {
+              "expr": {
+                "Literal": {
+                  "Value": "1L"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'National Event Sales vs. Normal-Day Baseline'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Average daily sales by national event type'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "8e5ad97e373e5687cafa",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimHolidays"
+              }
+            },
+            "Property": "type"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "880f41259f98e790bcd6",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "05_Driver Measures"
+              }
+            },
+            "Property": "National Event Days"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "37d56147f8480605d62e",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "05_Driver Measures"
+              }
+            },
+            "Property": "National Event Sales"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "32a4a8a0f0712ef85344",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "05_Driver Measures"
+              }
+            },
+            "Property": "Avg Sales per National Event Day"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "aa8ea10c184bc1d87950",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "05_Driver Measures"
+              }
+            },
+            "Property": "Avg Sales per Normal Day"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "2982c3549a4a8f7cbdaa",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "05_Driver Measures"
+              }
+            },
+            "Property": "National Event vs Normal %"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

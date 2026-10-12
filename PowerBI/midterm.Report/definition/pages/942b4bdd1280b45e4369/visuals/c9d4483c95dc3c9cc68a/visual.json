@@ -4,10 +4,10 @@
   "position": {
     "x": 1189.0577507598784,
     "y": 0,
-    "z": 1,
+    "z": 1000,
     "height": 119.63525835866261,
     "width": 353.06990881458967,
-    "tabOrder": 1
+    "tabOrder": 1000
   },
   "visual": {
     "visualType": "slicer",
@@ -149,23 +149,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "5292f3e4d6fe5313715d",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "DimProduct"
-              }
-            },
-            "Property": "ProductFamily"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

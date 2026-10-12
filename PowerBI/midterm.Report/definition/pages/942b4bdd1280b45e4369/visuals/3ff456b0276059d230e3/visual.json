@@ -4,10 +4,10 @@
   "position": {
     "x": 1552.3404255319149,
     "y": 4.3768996960486319,
-    "z": 2,
+    "z": 2000,
     "height": 125.47112462006079,
     "width": 367.65957446808511,
-    "tabOrder": 2
+    "tabOrder": 2000
   },
   "visual": {
     "visualType": "slicer",
@@ -85,23 +85,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "f614a7522daa8b46f44e",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "DimStores"
-              }
-            },
-            "Property": "store_nbr"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

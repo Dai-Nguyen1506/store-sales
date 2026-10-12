@@ -4,10 +4,10 @@
   "position": {
     "x": 920.60790273556233,
     "y": 119.63525835866261,
-    "z": 6,
+    "z": 6000,
     "height": 466.86930091185411,
     "width": 999.39209726443767,
-    "tabOrder": 6
+    "tabOrder": 6000
   },
   "visual": {
     "visualType": "lineChart",
@@ -101,65 +101,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "8f4525aedb7398d7e0ad",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "02_Trend Measures"
-              }
-            },
-            "Property": "Average Daily Sales"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "43ae9262a168677ccdd0",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "DimDate"
-              }
-            },
-            "Property": "Year"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "ff99c93b2070bfc172e1",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "DimDate"
-              }
-            },
-            "Property": "Day Name"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "02bbf75e2bbb985583d6",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "DimDate"
-              }
-            },
-            "Property": "Month"
-          }
-        },
-        "type": "Categorical"
-      }
-    ]
   }
 }

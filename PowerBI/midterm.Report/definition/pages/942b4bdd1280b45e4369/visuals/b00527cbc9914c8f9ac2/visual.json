@@ -4,13 +4,13 @@
   "position": {
     "x": 0,
     "y": 586.50455927051667,
-    "z": 5,
+    "z": 5000,
     "height": 493.13069908814589,
     "width": 920.60790273556233,
-    "tabOrder": 5
+    "tabOrder": 5000
   },
   "visual": {
-    "visualType": "lineStackedColumnComboChart",
+    "visualType": "lineChart",
     "query": {
       "queryState": {
         "Category": {
@@ -126,51 +126,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "a876244d147298f6aa9d",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "DimDate"
-              }
-            },
-            "Property": "Month Start"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "f52804fbfb01a8126d34",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "02_Trend Measures"
-              }
-            },
-            "Property": "MoM Growth %"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "5c8a143d3f512285296c",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "00_Core Measures"
-              }
-            },
-            "Property": "YoY Growth %"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }
