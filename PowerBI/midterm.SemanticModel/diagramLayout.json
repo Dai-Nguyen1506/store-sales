@@ -4,7 +4,7 @@
     {
       "ordinal": 0,
       "scrollPosition": {
-        "x": 71.70453371889721,
+        "x": 0,
         "y": 0
       },
       "nodes": [
@@ -81,7 +81,7 @@
           "nodeIndex": "DimDate",
           "nodeLineageTag": "3749b3d7-ac4b-4516-8752-9d5a5933298b",
           "size": {
-            "height": 419,
+            "height": 493.164223842159,
             "width": 234
           },
           "zIndex": 7
@@ -101,8 +101,8 @@
         },
         {
           "location": {
-            "x": 1184.3616394153598,
-            "y": 281.41562407905428
+            "x": 1261.0399047436936,
+            "y": 280.15860333596686
           },
           "nodeIndex": "00_Core Measures",
           "nodeLineageTag": "cebb0a98-6e49-4a04-98bd-a5bd38266e02",
@@ -111,10 +111,23 @@
             "width": 234
           },
           "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1225.3506524107684,
+            "y": 417.80237470404165
+          },
+          "nodeIndex": "02_Trend Measures",
+          "nodeLineageTag": "f6e7ad0e-5849-44bd-b678-d29b84ce8559",
+          "size": {
+            "height": 159.30891269584743,
+            "width": 234
+          },
+          "zIndex": 0
         }
       ],
       "name": "All tables",
-      "zoomValue": 50.346892102823219,
+      "zoomValue": 79.553182037699955,
       "pinKeyFieldsToTop": false,
       "showExtraHeaderInfo": false,
       "hideKeyFieldsWhenCollapsed": false,

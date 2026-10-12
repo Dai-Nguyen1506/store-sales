@@ -1,0 +1,62 @@
+table '02_Trend Measures'
+	lineageTag: f6e7ad0e-5849-44bd-b678-d29b84ce8559
+
+	measure 'Sales PM' =
+			
+			CALCULATE (
+			    [Total Sales],
+			    DATEADD (
+			        DimDate[Date],
+			        -1,
+			        MONTH
+			    )
+			)
+		formatString: 0.00
+		lineageTag: 40f17546-67b0-4322-934d-02a2913cf420
+
+	measure 'MoM Growth %' =
+			
+			DIVIDE (
+			    [Total Sales] - [Sales PM],
+			    [Sales PM]
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 85d04ffc-1dfb-4423-8c66-ccacf752169f
+
+	measure 'Average Daily Sales' =
+			
+			AVERAGEX (
+			    VALUES ( DimDate[Date] ),
+			    [Total Sales]
+			)
+		formatString: 0.00
+		lineageTag: b377ed73-f2f6-4186-b7a6-cc9e517a3ebc
+
+	measure 'Sales YoY Change' = [Total Sales] - [Sales LY]
+		lineageTag: d9899349-4f91-4607-8d6b-05124eba9771
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Column1
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: fa39adeb-ab44-49a2-9cef-bd1dd93f1890
+		summarizeBy: sum
+		sourceColumn: Column1
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition '02_Trend Measures' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WMlSKjQUA", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
