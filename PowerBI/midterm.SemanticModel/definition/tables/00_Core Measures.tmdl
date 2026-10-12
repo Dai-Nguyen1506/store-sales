@@ -1,11 +1,12 @@
 table '00_Core Measures'
-	isHidden
 	lineageTag: cebb0a98-6e49-4a04-98bd-a5bd38266e02
 
 	measure 'Total Sales' =
 			
 			SUM ( FactSales[sales] )
 		lineageTag: 2da7d637-5d1b-4b03-a88d-0478c7ed3bea
+
+		changedProperty = IsHidden
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
@@ -15,6 +16,8 @@ table '00_Core Measures'
 		formatString: #,0
 		lineageTag: 6c76aa24-01c4-4972-aed6-f565bc9352ef
 
+		changedProperty = IsHidden
+
 	measure 'Sales LY' =
 			
 			CALCULATE (
@@ -23,6 +26,8 @@ table '00_Core Measures'
 			)
 		formatString: 0.00
 		lineageTag: a70fa452-314a-4dc0-9bbf-eedb36f943c0
+
+		changedProperty = IsHidden
 
 	measure 'YoY Growth %' =
 			
@@ -50,9 +55,8 @@ table '00_Core Measures'
 		dataType: int64
 		isHidden
 		formatString: 0
-		lineageTag: 75bb2d3b-baa7-43ab-94d2-6a0121247ef3
+		lineageTag: 52dcf6be-7710-4c88-b370-64bcb0dc1b3b
 		summarizeBy: sum
-		sourceColumn: Column1
 
 		changedProperty = IsHidden
 
@@ -63,9 +67,10 @@ table '00_Core Measures'
 		source =
 				let
 				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WMlSKjQUA", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
-				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", Int64.Type}})
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", Int64.Type}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column1"})
 				in
-				    #"Changed Type"
+				    #"Removed Columns"
 
 	changedProperty = IsHidden
 

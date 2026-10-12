@@ -1,4 +1,4 @@
-expression RootPath = "D:\data visualization\teaching_dataset" meta [IsParameterQuery = true, IsParameterQueryRequired = true, Type = type text, List = {"C:\Users\YOGA\Desktop\Class\01_Data_Visualization\midterm"}, DefaultValue = "C:\Users\YOGA\Desktop\Class\01_Data_Visualization\midterm"]
+expression RootPath = "D:\data visualization\teaching_dataset" meta [IsParameterQuery = true, IsParameterQueryRequired = true, Type = type text, List = {"D:\data visualization\teaching_dataset"}, DefaultValue = "D:\data visualization\teaching_dataset"]
 	lineageTag: 14cd6285-8a18-421b-b3d6-dffc5b578bee
 
 	annotation PBI_NavigationStepName = Navigation
@@ -68,4 +68,3 @@ expression FactOil_Old =
 	annotation PBI_NavigationStepName = Navigation
 
 	annotation PBI_ResultType = Table
-

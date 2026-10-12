@@ -1,0 +1,200 @@
+table '05_Driver Measures'
+	lineageTag: 0b4967a3-b5e5-4215-be1b-71b2e443e2e2
+
+	measure 'Promotion Items' =
+			
+			SUM ( FactSales[onpromotion] )
+		formatString: 0
+		lineageTag: 95a0665c-3237-4eef-99c5-9799604e6822
+
+	measure 'Avg Daily Promotion Items' =
+			
+			AVERAGEX (
+			    VALUES ( DimDate[Date] ),
+			    [Promotion Items]
+			)
+		lineageTag: e9718846-5ed7-4b9d-9535-cdbd014755ec
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Promotion Baseline' =
+			
+			CALCULATE (
+			    [Avg Daily Promotion Items],
+			    ALLSELECTED ( DimDate[Date] )
+			)
+		lineageTag: e832c6ea-ef6c-43f6-8f12-22b827d0f6f1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Sales High Promotion' =
+			
+			VAR PromotionBaseline =
+			    [Promotion Baseline]
+			RETURN
+			    AVERAGEX (
+			        FILTER (
+			            VALUES ( DimDate[Date] ),
+			            CALCULATE ( [Promotion Items] ) > PromotionBaseline
+			        ),
+			        CALCULATE ( [Total Sales] )
+			    )
+		lineageTag: cb053181-b181-45bf-a1ad-48aeca577973
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Sales Lower Promotion' =
+			
+			VAR PromotionBaseline =
+			    [Promotion Baseline]
+			RETURN
+			    AVERAGEX (
+			        FILTER (
+			            VALUES ( DimDate[Date] ),
+			            CALCULATE ( [Promotion Items] ) <= PromotionBaseline
+			        ),
+			        CALCULATE ( [Total Sales] )
+			    )
+		lineageTag: c9b57df4-b72c-484f-b001-8449df513ea0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Promotion Sales Difference %' =
+			
+			VAR HighPromo =
+			    [Sales High Promotion]
+			VAR LowerPromo =
+			    [Sales Lower Promotion]
+			RETURN
+			    IF (
+			        ISBLANK ( HighPromo )
+			            || ISBLANK ( LowerPromo )
+			            || LowerPromo = 0,
+			        BLANK (),
+			        DIVIDE (
+			            HighPromo - LowerPromo,
+			            LowerPromo
+			        )
+			    )
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: db80dae1-97e3-4809-a742-a74f54c7307d
+
+	measure 'National Event Sales' =
+			
+			CALCULATE (
+			    [Total Sales],
+			    TREATAS (
+			        CALCULATETABLE (
+			            VALUES ( DimHolidays[date] ),
+			            DimHolidays[locale] = "National"
+			        ),
+			        DimDate[Date]
+			    )
+			)
+		lineageTag: 622cc146-98a0-400b-a093-e80b631199dc
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'National Event Days' =
+			
+			CALCULATE (
+			    DISTINCTCOUNT ( DimHolidays[date] ),
+			    DimHolidays[locale] = "National"
+			)
+		formatString: 0
+		lineageTag: 70c69a44-6c93-4f50-9004-1b934e5786e0
+
+	measure 'Avg Sales per National Event Day' =
+			
+			DIVIDE (
+			    [National Event Sales],
+			    [National Event Days]
+			)
+		lineageTag: 87a5b296-92d0-46cb-84db-e44d97306875
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg Sales per Normal Day' =
+			
+			VAR NationalEventDates =
+			    CALCULATETABLE (
+			        VALUES ( DimHolidays[date] ),
+			        REMOVEFILTERS ( DimHolidays ),
+			        DimHolidays[locale] = "National"
+			    )
+			
+			VAR NormalDates =
+			    EXCEPT (
+			        VALUES ( DimDate[Date] ),
+			        NationalEventDates
+			    )
+			
+			RETURN
+			    CALCULATE (
+			        [Average Daily Sales],
+			        TREATAS (
+			            NormalDates,
+			            DimDate[Date]
+			        )
+			    )
+		lineageTag: bc592828-a464-44b5-a1ed-496080d3e5ed
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'National Event vs Normal %' =
+			
+			DIVIDE (
+			    [Avg Sales per National Event Day]
+			        - [Avg Sales per Normal Day],
+			    [Avg Sales per Normal Day]
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 01647595-1768-4f4c-8c13-bf6411f9ce57
+
+	measure 'Avg Oil Price' =
+			
+			AVERAGE ( FactOil[OilPrice] )
+		formatString: 0.00
+		lineageTag: 3c9e2e97-1bc1-4db3-b8ca-835eb07b6ad5
+
+	measure 'Oil Price PM' =
+			
+			CALCULATE (
+			    [Avg Oil Price],
+			    DATEADD ( DimDate[Date], -1, MONTH )
+			)
+		formatString: 0.0
+		lineageTag: 36b79963-4c3b-4607-9d3b-143f66d1161a
+
+	measure 'Oil Price Change %' =
+			
+			DIVIDE (
+			    [Avg Oil Price] - [Oil Price PM],
+			    [Oil Price PM]
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: a1cae362-6167-4bd5-8e5d-7cf35fe76603
+
+	column Column1
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 5d442f36-c037-4bb1-a949-a8a11037a268
+		summarizeBy: sum
+		sourceColumn: Column1
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition '05_Driver Measures' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WMlSKjQUA", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

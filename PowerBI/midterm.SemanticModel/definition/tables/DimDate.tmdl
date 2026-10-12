@@ -26,6 +26,7 @@ table DimDate
 		summarizeBy: none
 		isNameInferred
 		sourceColumn: [Quarter]
+		sortByColumn: 'Quarter No'
 
 		annotation SummarizationSetBy = Automatic
 
@@ -88,6 +89,7 @@ table DimDate
 		summarizeBy: none
 		isNameInferred
 		sourceColumn: [Day Name]
+		sortByColumn: 'Day Of Week'
 
 		annotation SummarizationSetBy = Automatic
 
@@ -106,6 +108,57 @@ table DimDate
 		summarizeBy: none
 		isNameInferred
 		sourceColumn: [Is Weekend]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Quarter No' =
+			
+			QUARTER ( DimDate[Date] )
+		formatString: 0
+		lineageTag: e4c39e4d-344f-4bb5-8501-46fc6f28d43f
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Year Quarter' =
+			
+			FORMAT ( DimDate[Date], "YYYY" )
+			    & " Q"
+			    & QUARTER ( DimDate[Date] )
+		lineageTag: 4699ec35-7c67-4e1f-b1b6-5aa3bce21490
+		summarizeBy: none
+		sortByColumn: 'Year Quarter Sort'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Year Quarter Sort' =
+			
+			YEAR ( DimDate[Date] ) * 100
+			    + QUARTER ( DimDate[Date] )
+		formatString: 0
+		lineageTag: a978f583-109f-4a72-bb87-ce3c262391a6
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Start' =
+			
+			DATE (
+			    YEAR ( DimDate[Date] ),
+			    MONTH ( DimDate[Date] ),
+			    1
+			)
+		formatString: mmmm yyyy
+		lineageTag: 7c14ff0b-c839-4818-b275-0ac4c27f75bf
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column 'Day Type' = IF ( CALCULATE ( COUNTROWS ( DimHolidays ) ) > 0, "Holiday", "Normal Day" )
+		lineageTag: 0cb242f5-7585-48bd-8da3-ab1261579b55
+		summarizeBy: none
 
 		annotation SummarizationSetBy = Automatic
 

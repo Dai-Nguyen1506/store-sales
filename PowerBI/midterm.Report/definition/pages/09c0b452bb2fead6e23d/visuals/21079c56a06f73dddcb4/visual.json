@@ -1,0 +1,144 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "21079c56a06f73dddcb4",
+  "position": {
+    "x": 0,
+    "y": 132.8500823723229,
+    "z": 3002,
+    "height": 509.25864909390441,
+    "width": 589.91762767710043,
+    "tabOrder": 3002
+  },
+  "visual": {
+    "visualType": "scatterChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimDate"
+                    }
+                  },
+                  "Property": "Year Month"
+                }
+              },
+              "queryRef": "DimDate.Year Month",
+              "nativeQueryRef": "Year Month",
+              "active": true
+            }
+          ]
+        },
+        "X": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "05_Driver Measures"
+                    }
+                  },
+                  "Property": "Oil Price Change %"
+                }
+              },
+              "queryRef": "05_Driver Measures.Oil Price Change %",
+              "nativeQueryRef": "Oil Price Change %",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "02_Trend Measures"
+                    }
+                  },
+                  "Property": "MoM Growth %"
+                }
+              },
+              "queryRef": "02_Trend Measures.MoM Growth %",
+              "nativeQueryRef": "MoM Growth %"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "trend": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "displayName": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Trend line 1'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "0144dbf6c5cea8dd3970",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "05_Driver Measures"
+              }
+            },
+            "Property": "Oil Price Change %"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "99583385c418361927fd",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "02_Trend Measures"
+              }
+            },
+            "Property": "MoM Growth %"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "865dd443e90b95ca32f2",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimDate"
+              }
+            },
+            "Property": "Year Month"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

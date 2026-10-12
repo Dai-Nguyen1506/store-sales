@@ -61,13 +61,6 @@ table 01_Overview
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	measure 'Sales YoY Change' =
-			
-			[Total Sales] - [Sales LY]
-		lineageTag: d7aa81a2-18c8-4483-9371-bbf74193d66c
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
 	measure 'Txn YoY %' =
 			
 			DIVIDE([Total Transactions] - [OV Txn PY (LFL)], [OV Txn PY (LFL)])
@@ -120,4 +113,3 @@ table 01_Overview
 				  #"Changed column type"
 
 	annotation PBI_ResultType = Table
-

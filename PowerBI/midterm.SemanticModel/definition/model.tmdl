@@ -9,7 +9,7 @@ model Model
 
 annotation __PBI_TimeIntelligenceEnabled = 0
 
-annotation PBI_QueryOrder = ["DimHolidays","FactOil","DimStores","FactSales","FactTransactions","DimProduct","RootPath","FactOil_Old","FactOil_Raw","OilCalendar","00_Core Measures","04_Store","01_Overview"]
+annotation PBI_QueryOrder = ["DimHolidays","FactOil","DimStores","FactSales","FactTransactions","DimProduct","RootPath","FactOil_Old","FactOil_Raw","OilCalendar","00_Core Measures","01_Overview","02_Trend Measures","04_Store","05_Driver Measures"]
 
 annotation PBI_ProTooling = ["DevMode"]
 
@@ -21,8 +21,9 @@ ref table FactTransactions
 ref table DimDate
 ref table DimProduct
 ref table '00_Core Measures'
-ref table 04_Store
 ref table 01_Overview
+ref table '02_Trend Measures'
+ref table 04_Store
+ref table '05_Driver Measures'
 
 ref cultureInfo en-US
-
