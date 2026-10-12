@@ -3,10 +3,10 @@
   "name": "521ffbb4e798763fd6f1",
   "position": {
     "x": 0,
-    "y": 271.42857142857144,
+    "y": 272.01995012468831,
     "z": 9000,
-    "height": 415.71428571428572,
-    "width": 1087.1428571428571,
+    "height": 391.87032418952617,
+    "width": 856.45885286783039,
     "tabOrder": 9000
   },
   "visual": {
@@ -141,7 +141,7 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "04_Store"
+                      "Entity": "04_Store Measures"
                     }
                   },
                   "Property": "Sales Share %"
@@ -159,7 +159,7 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "04_Store"
+                      "Entity": "04_Store Measures"
                     }
                   },
                   "Property": "Sales Share %"

@@ -1,16 +1,16 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
-  "name": "82b795b64ca8380266a9",
+  "name": "a88bb6bcb27c4f3d6f83",
   "position": {
-    "x": 10.291629675538953,
-    "y": 0,
-    "z": 0,
-    "height": 539.28139499824113,
-    "width": 627.78941020787613,
-    "tabOrder": 0
+    "x": 541.34663341645887,
+    "y": 181.79551122194513,
+    "z": 4,
+    "height": 898.20448877805484,
+    "width": 665.23690773067335,
+    "tabOrder": 4
   },
   "visual": {
-    "visualType": "scatterChart",
+    "visualType": "barChart",
     "query": {
       "queryState": {
         "Category": {
@@ -32,7 +32,7 @@
             }
           ]
         },
-        "Size": {
+        "Tooltips": {
           "projections": [
             {
               "field": {
@@ -47,25 +47,20 @@
               },
               "queryRef": "00_Core Measures.Total Sales",
               "nativeQueryRef": "Total Sales"
-            }
-          ]
-        },
-        "X": {
-          "projections": [
+            },
             {
               "field": {
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "04_Store"
+                      "Entity": "00_Core Measures"
                     }
                   },
-                  "Property": "Sales Share %"
+                  "Property": "Sales LY"
                 }
               },
-              "queryRef": "04_Store.Sales Share %",
-              "nativeQueryRef": "Sales Share %",
-              "active": true
+              "queryRef": "00_Core Measures.Sales LY",
+              "nativeQueryRef": "Sales LY"
             }
           ]
         },
@@ -87,10 +82,28 @@
             }
           ]
         }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "00_Core Measures"
+                  }
+                },
+                "Property": "YoY Growth %"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
       }
     },
     "objects": {
-      "xAxisReferenceLine": [
+      "labels": [
         {
           "properties": {
             "show": {
@@ -99,28 +112,11 @@
                   "Value": "true"
                 }
               }
-            },
-            "displayName": {
-              "expr": {
-                "Literal": {
-                  "Value": "'X-Axis Constant Line 1'"
-                }
-              }
-            },
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "0.03D"
-                }
-              }
             }
-          },
-          "selector": {
-            "id": "1"
           }
         }
       ],
-      "y1AxisReferenceLine": [
+      "ribbonBands": [
         {
           "properties": {
             "show": {
@@ -129,17 +125,66 @@
                   "Value": "true"
                 }
               }
-            },
-            "displayName": {
+            }
+          }
+        }
+      ],
+      "categoryAxis": [
+        {
+          "properties": {
+            "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "'Y-Axis Constant Line 1'"
+                  "Value": "10D"
                 }
               }
             }
-          },
-          "selector": {
-            "id": "1"
+          }
+        }
+      ],
+      "dataPoint": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 3,
+                      "Percent": 0.2
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'YoY Growth by Product Family'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Year-over-year growth across all product families'"
+                }
+              }
+            }
           }
         }
       ]
@@ -149,7 +194,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "913e3c16be3f135bd4a6",
+        "name": "b5dbb4ef03248aeaf2d4",
         "field": {
           "Column": {
             "Expression": {
@@ -160,24 +205,10 @@
             "Property": "ProductFamily"
           }
         },
-        "type": "Categorical"
+        "type": "TopN"
       },
       {
-        "name": "b60c72caac8d630214a0",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "04_Store"
-              }
-            },
-            "Property": "Sales Share %"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "7217be51cd217aca09c2",
+        "name": "ce5cc2873dd2e950d763",
         "field": {
           "Measure": {
             "Expression": {
@@ -191,7 +222,7 @@
         "type": "Advanced"
       },
       {
-        "name": "ac5094a3a0437ca82c07",
+        "name": "b6619869022bd3de8d07",
         "field": {
           "Measure": {
             "Expression": {
@@ -200,6 +231,20 @@
               }
             },
             "Property": "Total Sales"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "08d1f2a298a3cdddbb25",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "00_Core Measures"
+              }
+            },
+            "Property": "Sales LY"
           }
         },
         "type": "Advanced"

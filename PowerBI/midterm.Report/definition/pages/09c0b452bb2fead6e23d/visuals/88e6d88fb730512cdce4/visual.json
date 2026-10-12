@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
-  "name": "b47838d8879a9b0e2e21",
+  "name": "88e6d88fb730512cdce4",
   "position": {
-    "x": 1086.9300911854102,
-    "y": 172.15805471124619,
-    "z": 1000,
-    "height": 74.40729483282675,
-    "width": 376.41337386018239,
-    "tabOrder": 1000
+    "x": 1519.8598949211907,
+    "y": 1.6812609457092818,
+    "z": 3006,
+    "height": 131.13835376532398,
+    "width": 400.14010507880909,
+    "tabOrder": 3006
   },
   "visual": {
     "visualType": "slicer",
@@ -20,13 +20,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "FactSales"
+                      "Entity": "DimProduct"
                     }
                   },
                   "Property": "ProductFamily"
                 }
               },
-              "queryRef": "FactSales.ProductFamily",
+              "queryRef": "DimProduct.ProductFamily",
               "nativeQueryRef": "ProductFamily",
               "active": true
             }
@@ -50,28 +50,7 @@
       ],
       "general": [
         {
-          "properties": {
-            "selfFilterEnabled": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "selection": [
-        {
-          "properties": {
-            "strictSingleSelect": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          }
+          "properties": {}
         }
       ],
       "header": [
@@ -99,13 +78,6 @@
                 }
               }
             },
-            "text": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Product Family'"
-                }
-              }
-            },
             "bold": {
               "expr": {
                 "Literal": {
@@ -119,22 +91,34 @@
                   "Value": "'center'"
                 }
               }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Product Family'"
+                }
+              }
             }
           }
         }
       ]
+    },
+    "syncGroup": {
+      "groupName": "ProductFamily",
+      "fieldChanges": true,
+      "filterChanges": true
     },
     "drillFilterOtherVisuals": true
   },
   "filterConfig": {
     "filters": [
       {
-        "name": "7276679da1afde0df37a",
+        "name": "b1ec6aa42097b486e840",
         "field": {
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "FactSales"
+                "Entity": "DimProduct"
               }
             },
             "Property": "ProductFamily"

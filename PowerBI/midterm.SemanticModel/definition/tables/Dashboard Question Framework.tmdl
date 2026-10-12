@@ -1,0 +1,248 @@
+table 'Dashboard Question Framework'
+	lineageTag: de4ba3d4-4842-44c2-b278-c7f4fce606a6
+
+	column Page
+		lineageTag: 739e11b9-0f68-4ad7-9d57-9ad853711db1
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Page]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Main Question'
+		lineageTag: cbcfb555-08d6-4dce-a5d9-7f468f4ba255
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Main Question]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Question ID'
+		lineageTag: abd24b72-ed78-42d7-8787-8fc2c7c308ab
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Question ID]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Analytical Question'
+		lineageTag: e4619be3-c71a-4ed5-9020-ebbd4d990075
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Analytical Question]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fields / Measures'
+		lineageTag: 6f0a025c-6c98-40c5-b0ba-fc189cbef313
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Fields / Measures]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Visual
+		lineageTag: 0d8b079c-17f2-4fc2-b11a-e669c4eb3d6b
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Visual]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Dashboard Question Framework' = calculated
+		mode: import
+		source =
+				
+				DATATABLE (
+				    "Page", STRING,
+				    "Main Question", STRING,
+				    "Question ID", STRING,
+				    "Analytical Question", STRING,
+				    "Fields / Measures", STRING,
+				    "Visual", STRING,
+				    {
+				        {
+				            "1. Overview",
+				            "What is the overall business performance?",
+				            "1.1",
+				            "What is the current scale of the business?",
+				            "Total Sales; Total Transactions",
+				            "KPI Cards"
+				        },
+				        {
+				            "1. Overview",
+				            "What is the overall business performance?",
+				            "1.2",
+				            "Is overall performance improving or deteriorating?",
+				            "Total Sales; YoY Growth %; Sales YoY Change",
+				            "KPI / YoY Comparison"
+				        },
+				        {
+				            "1. Overview",
+				            "What is the overall business performance?",
+				            "1.3",
+				            "Is sales performance associated with transaction volume or sales per transaction?",
+				            "Total Sales; Total Transactions; Sales per Transaction",
+				            "KPI / Comparison Visual"
+				        },
+				        {
+				            "1. Overview",
+				            "What is the overall business performance?",
+				            "1.4",
+				            "Is overall sales growth accompanied by expansion in the store network?",
+				            "Total Sales; Store Count; Year",
+				            "Sales vs Store Count"
+				        },
+				        {
+				            "1. Overview",
+				            "What is the overall business performance?",
+				            "1.5",
+				            "Is the latest YoY comparison based on a complete and comparable period?",
+				            "Date; Sales LY; YoY Growth %",
+				            "Data Coverage / KPI Note"
+				        },
+				
+				        {
+				            "2. Trend & Seasonality",
+				            "When do sales peak or decline, and what temporal patterns and seasonality can be identified?",
+				            "2.1",
+				            "How have sales evolved over the observation period, and what is the long-term direction?",
+				            "Date; Total Sales",
+				            "Sales Trend Line"
+				        },
+				        {
+				            "2. Trend & Seasonality",
+				            "When do sales peak or decline, and what temporal patterns and seasonality can be identified?",
+				            "2.2",
+				            "When did significant increases or decreases occur, and how did performance compare with the previous month and prior year?",
+				            "Total Sales; MoM Growth %; YoY Growth %",
+				            "Trend + Growth Comparison"
+				        },
+				        {
+				            "2. Trend & Seasonality",
+				            "When do sales peak or decline, and what temporal patterns and seasonality can be identified?",
+				            "2.3",
+				            "Do recurring seasonal patterns appear by month and day of week?",
+				            "Month; Day of Week; Average Daily Sales",
+				            "Monthly Seasonality + Day-of-Week"
+				        },
+				        {
+				            "2. Trend & Seasonality",
+				            "When do sales peak or decline, and what temporal patterns and seasonality can be identified?",
+				            "2.4",
+				            "During which periods was sales performance unusually volatile?",
+				            "Date; Total Sales; Growth Measures",
+				            "Volatility / Trend Visual"
+				        },
+				        {
+				            "2. Trend & Seasonality",
+				            "When do sales peak or decline, and what temporal patterns and seasonality can be identified?",
+				            "2.5",
+				            "How do sales trends and seasonal patterns differ across product families?",
+				            "ProductFamily; Date; Total Sales",
+				            "Product-filtered Trend"
+				        },
+				
+				        {
+				            "3. Product Performance",
+				            "Which product families drive or hinder sales performance, and which should management prioritize?",
+				            "3.1",
+				            "Which product families account for the largest share of sales?",
+				            "ProductFamily; Total Sales; Sales Contribution %",
+				            "Top 10 Product Families by Sales"
+				        },
+				        {
+				            "3. Product Performance",
+				            "Which product families drive or hinder sales performance, and which should management prioritize?",
+				            "3.2",
+				            "Which product families are growing or declining fastest year over year?",
+				            "ProductFamily; YoY Growth %",
+				            "YoY Growth by Product Family"
+				        },
+				        {
+				            "3. Product Performance",
+				            "Which product families drive or hinder sales performance, and which should management prioritize?",
+				            "3.3",
+				            "Which product families contribute most to absolute sales gains or losses versus the prior-year period?",
+				            "ProductFamily; Sales YoY Change; Sales LY",
+				            "Sales YoY Change by Product Family"
+				        },
+				        {
+				            "3. Product Performance",
+				            "Which product families drive or hinder sales performance, and which should management prioritize?",
+				            "3.4",
+				            "Which product families should be prioritized when sales scale and YoY growth are evaluated together?",
+				            "ProductFamily; Total Sales; YoY Growth %; Avg Product Family Sales",
+				            "Product Portfolio: Sales vs. YoY Growth"
+				        },
+				
+				        {
+				            "4. Store Performance",
+				            "Where is product performance concentrated, and which stores or regions present opportunities or risks?",
+				            "4.1",
+				            "How does product sales performance vary across stores?",
+				            "Store; ProductFamily; Total Sales",
+				            "Store Performance Ranking"
+				        },
+				        {
+				            "4. Store Performance",
+				            "Where is product performance concentrated, and which stores or regions present opportunities or risks?",
+				            "4.2",
+				            "In which cities, states, or store groups is product sales concentrated?",
+				            "City; State; Type; Cluster; Total Sales",
+				            "Regional / Store Comparison"
+				        },
+				        {
+				            "4. Store Performance",
+				            "Where is product performance concentrated, and which stores or regions present opportunities or risks?",
+				            "4.3",
+				            "Which stores materially outperform or underperform and warrant further investigation?",
+				            "Store; Total Sales; Growth Measures",
+				            "Store Ranking / Performance Matrix"
+				        },
+				
+				        {
+				            "5. Performance Drivers",
+				            "How are promotions, holidays/events, and external factors associated with sales performance?",
+				            "5.1",
+				            "Are higher levels of promotion activity associated with higher average daily sales?",
+				            "On Promotion; Average Daily Sales",
+				            "Promotion Activity vs Average Daily Sales"
+				        },
+				        {
+				            "5. Performance Drivers",
+				            "How are promotions, holidays/events, and external factors associated with sales performance?",
+				            "5.2",
+				            "Which product families show the largest sales differences between higher- and lower-promotion days?",
+				            "ProductFamily; Promotion Group; Sales",
+				            "Higher vs Lower Promotion Days by Product Family"
+				        },
+				        {
+				            "5. Performance Drivers",
+				            "How are promotions, holidays/events, and external factors associated with sales performance?",
+				            "5.3",
+				            "How does average daily sales on national holidays and events compare with normal-day sales?",
+				            "Holiday/Event Type; Average Daily Sales",
+				            "National Event Sales vs Normal-Day Baseline"
+				        },
+				        {
+				            "5. Performance Drivers",
+				            "How are promotions, holidays/events, and external factors associated with sales performance?",
+				            "5.4",
+				            "How do sales and oil prices move together over time?",
+				            "Date; Total Sales; Oil Price",
+				            "Sales Performance and Oil Price Over Time"
+				        },
+				        {
+				            "5. Performance Drivers",
+				            "How are promotions, holidays/events, and external factors associated with sales performance?",
+				            "5.5",
+				            "Are monthly changes in oil prices associated with monthly sales growth?",
+				            "Oil Price Change; Sales Growth",
+				            "Monthly Oil Price Change vs Sales Growth"
+				        }
+				    }
+				)
+
+	annotation PBI_Id = 77bf096f7364422daa027d82f84e18e5
+

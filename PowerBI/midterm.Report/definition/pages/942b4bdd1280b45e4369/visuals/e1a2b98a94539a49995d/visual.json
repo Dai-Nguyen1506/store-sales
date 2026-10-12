@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
-  "name": "c9d4483c95dc3c9cc68a",
+  "name": "e1a2b98a94539a49995d",
   "position": {
-    "x": 1421.033434650456,
+    "x": 1580.9445585215606,
     "y": 0,
-    "z": 1000,
-    "height": 119.63525835866261,
-    "width": 258.23708206686928,
-    "tabOrder": 1000
+    "z": 7001,
+    "height": 120.24640657084188,
+    "width": 339.05544147843938,
+    "tabOrder": 7001
   },
   "visual": {
     "visualType": "slicer",
@@ -48,16 +48,14 @@
           }
         }
       ],
+      "general": [
+        {
+          "properties": {}
+        }
+      ],
       "header": [
         {
           "properties": {
-            "text": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Product Family'"
-                }
-              }
-            },
             "show": {
               "expr": {
                 "Literal": {
@@ -66,37 +64,6 @@
               }
             }
           }
-        }
-      ],
-      "selection": [
-        {
-          "properties": {
-            "selectAllCheckboxEnabled": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "dropdown": [
-        {
-          "properties": {
-            "borderRadius": {
-              "expr": {
-                "Literal": {
-                  "Value": "4L"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "general": [
-        {
-          "properties": {}
         }
       ]
     },
@@ -118,43 +85,17 @@
                 }
               }
             },
-            "alignment": {
-              "expr": {
-                "Literal": {
-                  "Value": "'center'"
-                }
-              }
-            },
             "bold": {
               "expr": {
                 "Literal": {
                   "Value": "true"
                 }
               }
-            }
-          }
-        }
-      ],
-      "subTitle": [
-        {
-          "properties": {
-            "show": {
+            },
+            "alignment": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "divider": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
+                  "Value": "'center'"
                 }
               }
             }
@@ -162,12 +103,17 @@
         }
       ]
     },
+    "syncGroup": {
+      "groupName": "ProductFamily",
+      "fieldChanges": true,
+      "filterChanges": true
+    },
     "drillFilterOtherVisuals": true
   },
   "filterConfig": {
     "filters": [
       {
-        "name": "d1ae16aea48e973f7d58",
+        "name": "1ae05699d907d992d26f",
         "field": {
           "Column": {
             "Expression": {

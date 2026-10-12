@@ -1,0 +1,48 @@
+table '03_Product Measures'
+	lineageTag: 540b52a4-c22c-4361-8cee-5569e3cd0352
+
+	measure 'Sales Contribution %' =
+			
+			DIVIDE (
+			    [Total Sales],
+			    CALCULATE (
+			        [Total Sales],
+			        REMOVEFILTERS ( DimProduct[ProductFamily] )
+			    )
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 0cc90d7e-7e7a-4f3e-880c-a921abdb01b3
+
+	measure 'Avg Product Family Sales' =
+			
+			AVERAGEX (
+			    ALLSELECTED ( DimProduct[ProductFamily] ),
+			    [Total Sales]
+			)
+		lineageTag: c09508f8-67b6-45d1-81a5-7da2aa1cea0a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Column1
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: fae99161-01ef-4276-bd7c-445f08b079ab
+		summarizeBy: sum
+		sourceColumn: Column1
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition '03_Product Measures' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WMlSKjQUA", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

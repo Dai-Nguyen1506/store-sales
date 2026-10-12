@@ -1,56 +1,19 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
-  "name": "448e109bfa4952d8a83c",
+  "name": "484ebc06af676203a1a9",
   "position": {
-    "x": 1296.7453391179081,
-    "y": 18.524933415970118,
-    "z": 2,
-    "height": 487.8232466205464,
-    "width": 623.67275833766064,
-    "tabOrder": 2
+    "x": 95.610972568578561,
+    "y": 78.104738154613472,
+    "z": 7,
+    "height": 92.917705735660846,
+    "width": 891.47132169576059,
+    "tabOrder": 7
   },
   "visual": {
-    "visualType": "ribbonChart",
+    "visualType": "cardVisual",
     "query": {
       "queryState": {
-        "Category": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "DimDate"
-                    }
-                  },
-                  "Property": "Year"
-                }
-              },
-              "queryRef": "DimDate.Year",
-              "nativeQueryRef": "Year",
-              "active": true
-            }
-          ]
-        },
-        "Series": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "DimProduct"
-                    }
-                  },
-                  "Property": "ProductFamily"
-                }
-              },
-              "queryRef": "DimProduct.ProductFamily",
-              "nativeQueryRef": "ProductFamily"
-            }
-          ]
-        },
-        "Y": {
+        "Data": {
           "projections": [
             {
               "field": {
@@ -65,6 +28,34 @@
               },
               "queryRef": "00_Core Measures.Total Sales",
               "nativeQueryRef": "Total Sales"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "00_Core Measures"
+                    }
+                  },
+                  "Property": "YoY Growth %"
+                }
+              },
+              "queryRef": "00_Core Measures.YoY Growth %",
+              "nativeQueryRef": "YoY Growth %"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "02_Trend Measures"
+                    }
+                  },
+                  "Property": "Sales YoY Change"
+                }
+              },
+              "queryRef": "02_Trend Measures.Sales YoY Change",
+              "nativeQueryRef": "Sales YoY Change"
             }
           ]
         }
@@ -88,55 +79,12 @@
         "isDefaultSort": true
       }
     },
-    "objects": {
-      "labels": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            }
-          }
-        }
-      ]
-    },
     "drillFilterOtherVisuals": true
   },
   "filterConfig": {
     "filters": [
       {
-        "name": "944c1e0f6cb74394f5a6",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "DimDate"
-              }
-            },
-            "Property": "Year"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "22d05d31c2c95130b29f",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "DimProduct"
-              }
-            },
-            "Property": "ProductFamily"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "86b9aa66a26960397773",
+        "name": "7a2344495f1965644f97",
         "field": {
           "Measure": {
             "Expression": {
@@ -145,6 +93,34 @@
               }
             },
             "Property": "Total Sales"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "31bf9217d0728a8c8263",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "00_Core Measures"
+              }
+            },
+            "Property": "YoY Growth %"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "f6bee2bdfca965721d07",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "02_Trend Measures"
+              }
+            },
+            "Property": "Sales YoY Change"
           }
         },
         "type": "Advanced"

@@ -20,7 +20,7 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "04_Store"
+                      "Entity": "04_Store Measures"
                     }
                   },
                   "Property": "Active Stores"
@@ -39,7 +39,7 @@
               "Measure": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "04_Store"
+                    "Entity": "04_Store Measures"
                   }
                 },
                 "Property": "Active Stores"
@@ -61,7 +61,7 @@
           "Measure": {
             "Expression": {
               "SourceRef": {
-                "Entity": "04_Store"
+                "Entity": "04_Store Measures"
               }
             },
             "Property": "Active Stores"

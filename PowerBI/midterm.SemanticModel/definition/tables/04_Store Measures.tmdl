@@ -1,4 +1,4 @@
-table 04_Store
+table '04_Store Measures'
 	lineageTag: 313bfb5b-e4a1-4c59-84a4-ec79c2531c95
 
 	measure 'Active Stores' =
@@ -42,13 +42,16 @@ table 04_Store
 
 	column Column1
 		dataType: string
+		isHidden
 		lineageTag: febaf4b1-433d-42e2-9145-9c43cd8e6413
 		summarizeBy: none
 		sourceColumn: Column1
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
-	partition 04_Store = m
+	partition '04_Store Measures' = m
 		mode: import
 		source =
 				let
@@ -56,6 +59,8 @@ table 04_Store
 				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}})
 				in
 				    #"Changed Type"
+
+	changedProperty = Name
 
 	annotation PBI_ResultType = Table
 

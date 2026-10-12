@@ -32,7 +32,15 @@ table '02_Trend Measures'
 		formatString: 0.00
 		lineageTag: b377ed73-f2f6-4186-b7a6-cc9e517a3ebc
 
-	measure 'Sales YoY Change' = [Total Sales] - [Sales LY]
+	measure 'Sales YoY Change' =
+			
+			VAR SalesLY = [Sales LY]
+			RETURN
+			    IF (
+			        ISBLANK ( SalesLY ),
+			        BLANK (),
+			        [Total Sales] - SalesLY
+			    )
 		lineageTag: d9899349-4f91-4607-8d6b-05124eba9771
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}

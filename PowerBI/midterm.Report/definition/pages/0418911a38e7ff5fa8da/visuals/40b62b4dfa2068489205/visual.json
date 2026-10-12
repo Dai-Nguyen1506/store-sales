@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "40b62b4dfa2068489205",
   "position": {
-    "x": 0,
-    "y": 687.14285714285722,
+    "x": 856.45885286783039,
+    "y": 272.01995012468831,
     "z": 10000,
-    "height": 391.42857142857144,
-    "width": 1087.1428571428571,
+    "height": 807.98004987531169,
+    "width": 1063.8403990024938,
     "tabOrder": 10000
   },
   "visual": {
@@ -90,7 +90,7 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "04_Store"
+                      "Entity": "04_Store Measures"
                     }
                   },
                   "Property": "Sales Share %"
@@ -132,7 +132,7 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "04_Store"
+                      "Entity": "04_Store Measures"
                     }
                   },
                   "Property": "Store Rank"
@@ -361,7 +361,7 @@
           "Measure": {
             "Expression": {
               "SourceRef": {
-                "Entity": "04_Store"
+                "Entity": "04_Store Measures"
               }
             },
             "Property": "Sales Share %"
@@ -403,7 +403,7 @@
           "Measure": {
             "Expression": {
               "SourceRef": {
-                "Entity": "04_Store"
+                "Entity": "04_Store Measures"
               }
             },
             "Property": "Store Rank"
