@@ -1,0 +1,77 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "0106917f02935b5e0047",
+  "position": {
+    "x": 1008.8888888888889,
+    "y": 151.11111111111111,
+    "z": 4,
+    "height": 151.11111111111111,
+    "width": 306.66666666666669,
+    "tabOrder": 4
+  },
+  "visual": {
+    "visualType": "slicer",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimStores"
+                    }
+                  },
+                  "Property": "cluster"
+                }
+              },
+              "queryRef": "DimStores.cluster",
+              "nativeQueryRef": "cluster",
+              "active": true
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "data": [
+        {
+          "properties": {
+            "mode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Between'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "e20e2a9b6009a4208feb",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimStores"
+              }
+            },
+            "Property": "cluster"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

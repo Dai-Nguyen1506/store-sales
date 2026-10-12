@@ -4,7 +4,7 @@
     {
       "ordinal": 0,
       "scrollPosition": {
-        "x": 101.36163941535983,
+        "x": 71.70453371889721,
         "y": 0
       },
       "nodes": [
@@ -94,7 +94,7 @@
           "nodeIndex": "DimProduct",
           "nodeLineageTag": "5c933043-76e1-4216-93d4-3e5d8941c2d2",
           "size": {
-            "height": 104,
+            "height": 145,
             "width": 234
           },
           "zIndex": 1
@@ -114,7 +114,7 @@
         }
       ],
       "name": "All tables",
-      "zoomValue": 100,
+      "zoomValue": 50.346892102823219,
       "pinKeyFieldsToTop": false,
       "showExtraHeaderInfo": false,
       "hideKeyFieldsWhenCollapsed": false,
