@@ -1,0 +1,61 @@
+table 04_Store
+	lineageTag: 313bfb5b-e4a1-4c59-84a4-ec79c2531c95
+
+	measure 'Active Stores' =
+			
+			COUNTROWS (
+			    FILTER (
+			        VALUES ( DimStores[store_nbr] ),
+			        CALCULATE ( [Total Sales] ) > 0
+			    )
+			)
+		formatString: 0
+		lineageTag: 3e8cea8a-57a5-460f-a7e6-d4eca947015c
+
+	measure 'Sales Share %' =
+			
+			DIVIDE (
+			    [Total Sales],
+			    CALCULATE (
+			        [Total Sales],
+			        ALLSELECTED ( DimStores[store_nbr] )
+			    )
+			)
+		lineageTag: 67362cb0-45d1-46ad-877c-919a0fddfb55
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Store Rank' =
+			
+			IF (
+			    NOT ISBLANK ( [Total Sales] ),
+			    RANKX (
+			        ALLSELECTED ( DimStores[store_nbr] ),
+			        [Total Sales],
+			        ,
+			        DESC,
+			        DENSE
+			    )
+			)
+		formatString: 0
+		lineageTag: 2ee884b4-46d4-4d43-a4b5-9dd3e877455b
+
+	column Column1
+		dataType: string
+		lineageTag: febaf4b1-433d-42e2-9145-9c43cd8e6413
+		summarizeBy: none
+		sourceColumn: Column1
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 04_Store = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

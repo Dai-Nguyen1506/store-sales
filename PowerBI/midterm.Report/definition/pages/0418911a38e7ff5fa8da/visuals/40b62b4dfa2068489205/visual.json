@@ -3,10 +3,10 @@
   "name": "40b62b4dfa2068489205",
   "position": {
     "x": 0,
-    "y": 755.55555555555554,
+    "y": 756.345354059999,
     "z": 10,
-    "height": 324.44444444444446,
-    "width": 931.11111111111109,
+    "height": 322.5256464760356,
+    "width": 960.76301731945807,
     "tabOrder": 10
   },
   "visual": {
@@ -79,25 +79,25 @@
                       "Entity": "00_Core Measures"
                     }
                   },
-                  "Property": "Sales YoY %"
+                  "Property": "YoY Growth %"
                 }
               },
-              "queryRef": "00_Core Measures.Sales YoY %",
-              "nativeQueryRef": "Sales YoY %"
+              "queryRef": "00_Core Measures.YoY Growth %",
+              "nativeQueryRef": "YoY Growth %"
             },
             {
               "field": {
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "00_Core Measures"
+                      "Entity": "04_Store"
                     }
                   },
                   "Property": "Sales Share %"
                 }
               },
-              "queryRef": "00_Core Measures.Sales Share %",
-              "nativeQueryRef": "Sales Share %"
+              "queryRef": "04_Store.Sales Share %",
+              "nativeQueryRef": "Sales Share %1"
             },
             {
               "field": {
@@ -132,13 +132,13 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "00_Core Measures"
+                      "Entity": "04_Store"
                     }
                   },
                   "Property": "Store Rank"
                 }
               },
-              "queryRef": "00_Core Measures.Store Rank",
+              "queryRef": "04_Store.Store Rank",
               "nativeQueryRef": "Store Rank"
             }
           ]
@@ -183,7 +183,7 @@
                                       "Entity": "00_Core Measures"
                                     }
                                   },
-                                  "Property": "Sales YoY %"
+                                  "Property": "YoY Growth %"
                                 }
                               },
                               "Right": {
@@ -195,7 +195,7 @@
                           },
                           "Value": {
                             "Literal": {
-                              "Value": "'#0AF635'"
+                              "Value": "'#00FF11'"
                             }
                           }
                         },
@@ -210,7 +210,7 @@
                                       "Entity": "00_Core Measures"
                                     }
                                   },
-                                  "Property": "Sales YoY %"
+                                  "Property": "YoY Growth %"
                                 }
                               },
                               "Right": {
@@ -222,7 +222,7 @@
                           },
                           "Value": {
                             "Literal": {
-                              "Value": "'#F61A12'"
+                              "Value": "'#F60101'"
                             }
                           }
                         }
@@ -241,7 +241,7 @@
                 }
               }
             ],
-            "metadata": "00_Core Measures.Sales YoY %"
+            "metadata": "00_Core Measures.YoY Growth %"
           }
         }
       ]
