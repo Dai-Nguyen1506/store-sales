@@ -130,25 +130,25 @@
                       "Entity": "00_Core Measures"
                     }
                   },
-                  "Property": "Sales YoY %"
+                  "Property": "YoY Growth %"
                 }
               },
-              "queryRef": "00_Core Measures.Sales YoY %",
-              "nativeQueryRef": "Sales YoY %"
+              "queryRef": "00_Core Measures.YoY Growth %",
+              "nativeQueryRef": "YoY Growth %"
             },
             {
               "field": {
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "00_Core Measures"
+                      "Entity": "04_Store"
                     }
                   },
                   "Property": "Sales Share %"
                 }
               },
-              "queryRef": "00_Core Measures.Sales Share %",
-              "nativeQueryRef": "Sales Share %"
+              "queryRef": "04_Store.Sales Share %",
+              "nativeQueryRef": "Sales Share %1"
             }
           ]
         },
@@ -159,14 +159,14 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "00_Core Measures"
+                      "Entity": "04_Store"
                     }
                   },
                   "Property": "Sales Share %"
                 }
               },
-              "queryRef": "00_Core Measures.Sales Share %",
-              "nativeQueryRef": "Sales Share %",
+              "queryRef": "04_Store.Sales Share %",
+              "nativeQueryRef": "Sales Share %1",
               "active": true
             }
           ]
@@ -181,11 +181,11 @@
                       "Entity": "00_Core Measures"
                     }
                   },
-                  "Property": "Sales YoY %"
+                  "Property": "YoY Growth %"
                 }
               },
-              "queryRef": "00_Core Measures.Sales YoY %",
-              "nativeQueryRef": "Sales YoY %"
+              "queryRef": "00_Core Measures.YoY Growth %",
+              "nativeQueryRef": "YoY Growth %"
             }
           ]
         }

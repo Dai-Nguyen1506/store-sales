@@ -20,14 +20,14 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "00_Core Measures"
+                      "Entity": "04_Store"
                     }
                   },
                   "Property": "Active Stores"
                 }
               },
-              "queryRef": "00_Core Measures.Active Stores",
-              "nativeQueryRef": "Active Stores"
+              "queryRef": "04_Store.Active Stores",
+              "nativeQueryRef": "Active Stores1"
             }
           ]
         }
@@ -39,7 +39,7 @@
               "Measure": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "00_Core Measures"
+                    "Entity": "04_Store"
                   }
                 },
                 "Property": "Active Stores"
