@@ -3,10 +3,10 @@
   "name": "40b62b4dfa2068489205",
   "position": {
     "x": 0,
-    "y": 756.345354059999,
+    "y": 687.14285714285722,
     "z": 10000,
-    "height": 322.5256464760356,
-    "width": 960.76301731945807,
+    "height": 391.42857142857144,
+    "width": 1087.1428571428571,
     "tabOrder": 10000
   },
   "visual": {
@@ -154,7 +154,7 @@
                     "Entity": "00_Core Measures"
                   }
                 },
-                "Property": "Total Sales"
+                "Property": "YoY Growth %"
               }
             },
             "direction": "Descending"
@@ -259,8 +259,158 @@
             }
           }
         }
+      ],
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Store Performance Ranking'"
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "2b7e8dee6455297a48aa",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimStores"
+              }
+            },
+            "Property": "store_nbr"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "3f0e62dd8b227fe62615",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimStores"
+              }
+            },
+            "Property": "city"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "9b7dc9fff466865d25e8",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimStores"
+              }
+            },
+            "Property": "type"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "1109e6824903a12e23b5",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "00_Core Measures"
+              }
+            },
+            "Property": "Total Sales"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "c10c3e371aacbe714730",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "00_Core Measures"
+              }
+            },
+            "Property": "YoY Growth %"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "6acab11579f1523e96ea",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "04_Store"
+              }
+            },
+            "Property": "Sales Share %"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "bf2fd5a53d618fec84cc",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "00_Core Measures"
+              }
+            },
+            "Property": "Total Transactions"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "850f84a4949fc811fe85",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "00_Core Measures"
+              }
+            },
+            "Property": "Sales per Transaction"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "84bd19255fbf8c37119d",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "04_Store"
+              }
+            },
+            "Property": "Store Rank"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

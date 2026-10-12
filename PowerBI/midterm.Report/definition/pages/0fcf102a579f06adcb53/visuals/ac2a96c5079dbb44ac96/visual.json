@@ -19,17 +19,55 @@
               {
                 "textRuns": [
                   {
-                    "value": "PRODUCT PERFORMANCE OVERVIEW DASHBOARD",
-                    "textStyle": {
-                      "fontWeight": "bold",
-                      "fontFamily": "Arial",
-                      "fontSize": "28pt"
-                    }
+                    "value": ""
                   }
                 ],
                 "horizontalTextAlignment": "center"
               }
             ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'PRODUCT PERFORMANCE OVERVIEW DASHBOARD'"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "25D"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'center'"
+                }
+              }
+            }
           }
         }
       ]

@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "358103f45ef965673d38",
   "position": {
-    "x": 1109.8218612701373,
-    "y": 331.290107841832,
+    "x": 1143.8297872340424,
+    "y": 275.74468085106383,
     "z": 7,
-    "height": 360.73811742777264,
-    "width": 776.6912528291839,
+    "height": 379.33130699088144,
+    "width": 776.17021276595744,
     "tabOrder": 7
   },
   "visual": {
@@ -53,7 +53,7 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "01_Overview"
+                      "Entity": "01_Overview Measures"
                     }
                   },
                   "Property": "Txn YoY %"
@@ -67,7 +67,7 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "01_Overview"
+                      "Entity": "01_Overview Measures"
                     }
                   },
                   "Property": "Sales per Txn YoY %"
@@ -105,7 +105,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             },
@@ -165,8 +165,94 @@
             }
           }
         }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Year-over-Year (YoY) Growth Metrics'"
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "ea1646788dee5e38ef2f",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimDate"
+              }
+            },
+            "Property": "Year"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "07ce4c07ecdfe03743bc",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "00_Core Measures"
+              }
+            },
+            "Property": "YoY Growth %"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "04fb90d1dc6ad52c8f28",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "01_Overview Measures"
+              }
+            },
+            "Property": "Txn YoY %"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "dc00287df6e329fe9098",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "01_Overview Measures"
+              }
+            },
+            "Property": "Sales per Txn YoY %"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

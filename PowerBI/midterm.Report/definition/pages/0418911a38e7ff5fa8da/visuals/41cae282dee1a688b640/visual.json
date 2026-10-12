@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "41cae282dee1a688b640",
   "position": {
-    "x": 1111.1111111111111,
+    "x": 1086.9300911854102,
     "y": 0,
     "z": 3000,
-    "height": 150,
-    "width": 282,
+    "height": 75.866261398176292,
+    "width": 358.90577507598783,
     "tabOrder": 3000
   },
   "visual": {
@@ -52,8 +52,75 @@
         {
           "properties": {}
         }
+      ],
+      "header": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Type'"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'center'"
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "d7d99f38cf12e90d7283",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimStores"
+              }
+            },
+            "Property": "type"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
   }
 }

@@ -51,17 +51,6 @@ table '00_Core Measures'
 		formatString: #,0.00
 		lineageTag: 72e34dff-2090-44e2-9ba8-cb15fc43dc8a
 
-	column Column1
-		dataType: int64
-		isHidden
-		formatString: 0
-		lineageTag: 52dcf6be-7710-4c88-b370-64bcb0dc1b3b
-		summarizeBy: sum
-
-		changedProperty = IsHidden
-
-		annotation SummarizationSetBy = Automatic
-
 	partition '00_Core Measures' = m
 		mode: import
 		source =

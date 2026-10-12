@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "61626408cae927082fc2",
   "position": {
-    "x": 0,
-    "y": 322.22222222222223,
+    "x": 1086.9300911854102,
+    "y": 271.36778115501522,
     "z": 8000,
-    "height": 433.81970758396335,
-    "width": 892.6237962329717,
+    "height": 808.26747720364745,
+    "width": 833.06990881458967,
     "tabOrder": 8000
   },
   "visual": {
@@ -105,7 +105,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Sales Contribution by City (top 10)'"
+                  "Value": "'Active Stores by City (Top 10)'"
                 }
               }
             }
@@ -217,6 +217,20 @@
             }
           ]
         }
+      },
+      {
+        "name": "8f6a0454f0faaf9677cc",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "04_Store"
+              }
+            },
+            "Property": "Active Stores"
+          }
+        },
+        "type": "Advanced"
       }
     ]
   }

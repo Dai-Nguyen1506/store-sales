@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "b8312e249f3f54da1f32",
   "position": {
-    "x": 628.88888888888891,
-    "y": 148.88888888888889,
+    "x": 736.77811550151978,
+    "y": 134.22492401215806,
     "z": 7000,
-    "height": 150,
-    "width": 282,
+    "height": 109.42249240121581,
+    "width": 334.10334346504561,
     "tabOrder": 7000
   },
   "visual": {
@@ -52,5 +52,23 @@
       }
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "088e54e6c6d82e21705a",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "04_Store"
+              }
+            },
+            "Property": "Active Stores"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

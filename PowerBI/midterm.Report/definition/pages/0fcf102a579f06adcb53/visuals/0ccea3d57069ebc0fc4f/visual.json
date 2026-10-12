@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "0ccea3d57069ebc0fc4f",
   "position": {
-    "x": 756.44574623884978,
-    "y": 176.68805751564375,
+    "x": 777.629179331307,
+    "y": 151.73252279635258,
     "z": 3,
-    "height": 112.27053654639863,
-    "width": 353.3761150312875,
+    "height": 110.88145896656535,
+    "width": 353.06990881458967,
     "tabOrder": 3
   },
   "visual": {
@@ -51,24 +51,24 @@
         "isDefaultSort": true
       }
     },
-    "objects": {
-      "glowCustom": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            }
-          },
-          "selector": {
-            "id": "default"
-          }
-        }
-      ]
-    },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "88b4d470bb9f7238e3fc",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "00_Core Measures"
+              }
+            },
+            "Property": "Sales per Transaction"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

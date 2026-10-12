@@ -101,5 +101,65 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "d3506c52a4455e3238bd",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimDate"
+              }
+            },
+            "Property": "Month"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "a9d7fdb20147050091c4",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimDate"
+              }
+            },
+            "Property": "Day Name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "93ecd9b353a15151d907",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimDate"
+              }
+            },
+            "Property": "Year"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "2c1597f26b28a2da7e92",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "02_Trend Measures"
+              }
+            },
+            "Property": "Average Daily Sales"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

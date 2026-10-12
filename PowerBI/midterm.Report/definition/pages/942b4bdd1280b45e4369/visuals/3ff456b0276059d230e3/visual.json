@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "3ff456b0276059d230e3",
   "position": {
-    "x": 1552.3404255319149,
-    "y": 4.3768996960486319,
+    "x": 1679.2705167173251,
+    "y": 0,
     "z": 2000,
-    "height": 125.47112462006079,
-    "width": 367.65957446808511,
+    "height": 119.63525835866261,
+    "width": 240.72948328267478,
     "tabOrder": 2000
   },
   "visual": {
@@ -79,11 +79,43 @@
                   "Value": "'Store'"
                 }
               }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'center'"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
             }
           }
         }
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "7989c6043a9407348c26",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimStores"
+              }
+            },
+            "Property": "store_nbr"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

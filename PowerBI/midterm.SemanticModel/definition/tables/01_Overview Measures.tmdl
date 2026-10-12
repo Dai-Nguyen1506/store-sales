@@ -1,4 +1,4 @@
-table 01_Overview
+table '01_Overview Measures'
 	lineageTag: 28840e9e-c7e9-4551-a4e7-d3ad8266466e
 
 	measure 'OV Active Stores' = DISTINCTCOUNT(FactTransactions[store_nbr])
@@ -103,7 +103,7 @@ table 01_Overview
 
 		annotation SummarizationSetBy = Automatic
 
-	partition 01_Overview = m
+	partition '01_Overview Measures' = m
 		mode: import
 		source =
 				let
@@ -112,4 +112,9 @@ table 01_Overview
 				in
 				  #"Changed column type"
 
+	changedProperty = Name
+
 	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "0070591a602fbd4b16a0",
   "position": {
-    "x": 1511.0509918785783,
-    "y": 176.68805751564375,
+    "x": 1518.7841945288753,
+    "y": 153.19148936170214,
     "z": 5,
-    "height": 112.27053654639863,
-    "width": 368.10011982425777,
+    "height": 109.42249240121581,
+    "width": 367.65957446808511,
     "tabOrder": 5
   },
   "visual": {
@@ -20,7 +20,7 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "01_Overview"
+                      "Entity": "01_Overview Measures"
                     }
                   },
                   "Property": "MoM %"
@@ -39,7 +39,7 @@
               "Measure": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "01_Overview"
+                    "Entity": "01_Overview Measures"
                   }
                 },
                 "Property": "MoM %"
@@ -51,40 +51,24 @@
         "isDefaultSort": true
       }
     },
-    "objects": {
-      "glowCustom": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            }
-          },
-          "selector": {
-            "id": "default"
-          }
-        }
-      ],
-      "accentBar": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          },
-          "selector": {
-            "id": "default"
-          }
-        }
-      ]
-    },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "a2b86e46011972081ab5",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "01_Overview Measures"
+              }
+            },
+            "Property": "MoM %"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

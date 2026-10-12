@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "b05c8435661a5980e509",
   "position": {
-    "x": 1142.9508720543204,
-    "y": 178.52855811476502,
+    "x": 1152.5835866261398,
+    "y": 151.73252279635258,
     "z": 4,
-    "height": 112.27053654639863,
-    "width": 346.0141126348023,
+    "height": 110.88145896656535,
+    "width": 345.77507598784194,
     "tabOrder": 4
   },
   "visual": {
@@ -51,24 +51,24 @@
         "isDefaultSort": true
       }
     },
-    "objects": {
-      "glowCustom": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            }
-          },
-          "selector": {
-            "id": "default"
-          }
-        }
-      ]
-    },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "6d3b02fa861838f53357",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "00_Core Measures"
+              }
+            },
+            "Property": "YoY Growth %"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

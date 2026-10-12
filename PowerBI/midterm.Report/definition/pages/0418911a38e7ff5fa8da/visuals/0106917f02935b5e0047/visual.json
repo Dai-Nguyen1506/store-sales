@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "0106917f02935b5e0047",
   "position": {
-    "x": 1008.8888888888889,
-    "y": 151.11111111111111,
+    "x": 1463.3434650455927,
+    "y": 0,
     "z": 4000,
-    "height": 151.11111111111111,
-    "width": 306.66666666666669,
+    "height": 126.93009118541033,
+    "width": 456.65653495440728,
     "tabOrder": 4000
   },
   "visual": {
@@ -52,8 +52,75 @@
         {
           "properties": {}
         }
+      ],
+      "header": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Cluster'"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'center'"
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "1d85f2cd53aace035baf",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimStores"
+              }
+            },
+            "Property": "cluster"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

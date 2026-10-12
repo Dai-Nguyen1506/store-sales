@@ -10,7 +10,7 @@
     "tabOrder": 5000
   },
   "visual": {
-    "visualType": "lineChart",
+    "visualType": "stackedAreaChart",
     "query": {
       "queryState": {
         "Category": {
@@ -47,11 +47,7 @@
               },
               "queryRef": "02_Trend Measures.MoM Growth %",
               "nativeQueryRef": "MoM Growth %"
-            }
-          ]
-        },
-        "Y2": {
-          "projections": [
+            },
             {
               "field": {
                 "Measure": {
@@ -126,5 +122,51 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "b04c43bb6165a75b74ba",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimDate"
+              }
+            },
+            "Property": "Month Start"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "de89a2dc55be993715be",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "02_Trend Measures"
+              }
+            },
+            "Property": "MoM Growth %"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "b328ea2ab28b168aa757",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "00_Core Measures"
+              }
+            },
+            "Property": "YoY Growth %"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

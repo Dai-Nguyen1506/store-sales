@@ -48,7 +48,7 @@ table DimHolidays
 		mode: import
 		source =
 				let
-				    Source = Csv.Document(File.Contents("D:\data visualization\teaching_dataset\holidays_events.csv"), [Delimiter = ",", Columns = 6, Encoding = 1258, QuoteStyle = QuoteStyle.None]),
+				    Source = Csv.Document(File.Contents( RootPath & "\datasets\holidays_events.csv"), [Delimiter = ",", Columns = 6, Encoding = 1258, QuoteStyle = QuoteStyle.None]),
 				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
 				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"date", type date}, {"type", type text}, {"locale", type text}, {"locale_name", type text}, {"description", type text}, {"transferred", type logical}}),
 				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"description"}),

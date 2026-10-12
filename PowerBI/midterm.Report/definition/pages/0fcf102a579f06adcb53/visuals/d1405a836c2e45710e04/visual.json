@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "d1405a836c2e45710e04",
   "position": {
-    "x": 14.724004792970311,
-    "y": 721.47623485554527,
+    "x": 0,
+    "y": 655.07598784194533,
     "z": 8,
-    "height": 358.89761682865134,
-    "width": 782.21275462654785,
+    "height": 424.55927051671733,
+    "width": 954.16413373860178,
     "tabOrder": 8
   },
   "visual": {
@@ -39,7 +39,7 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "01_Overview"
+                      "Entity": "01_Overview Measures"
                     }
                   },
                   "Property": "OV Active Stores"
@@ -57,7 +57,7 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "01_Overview"
+                      "Entity": "01_Overview Measures"
                     }
                   },
                   "Property": "OV Avg Sales per Store-Day (ex PRODUCE)"
@@ -76,7 +76,7 @@
               "Measure": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "01_Overview"
+                    "Entity": "01_Overview Measures"
                   }
                 },
                 "Property": "OV Active Stores"
@@ -88,6 +88,60 @@
         "isDefaultSort": true
       }
     },
+    "objects": {
+      "zoom": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "lineStyles": [
+        {
+          "properties": {
+            "areaShow": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "categoryAxis": [
+        {
+          "properties": {
+            "gridlineShow": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
     "visualContainerObjects": {
       "dropShadow": [
         {
@@ -95,7 +149,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             },
@@ -155,8 +209,93 @@
             }
           }
         }
+      ],
+      "visualTooltip": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Active Stores vs. Average Daily Sales per Store'"
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "1f2b7535cec6607e4639",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimDate"
+              }
+            },
+            "Property": "Year"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "cca1b842d19f4eadcd40",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "01_Overview Measures"
+              }
+            },
+            "Property": "OV Active Stores"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "8b131fffa7c895249b3d",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "01_Overview Measures"
+              }
+            },
+            "Property": "OV Avg Sales per Store-Day (ex PRODUCE)"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

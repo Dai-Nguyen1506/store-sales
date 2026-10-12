@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "b47838d8879a9b0e2e21",
   "position": {
-    "x": 335.55555555555554,
-    "y": 0,
+    "x": 1086.9300911854102,
+    "y": 172.15805471124619,
     "z": 1000,
-    "height": 75.555555555555557,
-    "width": 437.77777777777777,
+    "height": 74.40729483282675,
+    "width": 376.41337386018239,
     "tabOrder": 1000
   },
   "visual": {
@@ -73,8 +73,75 @@
             }
           }
         }
+      ],
+      "header": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Product Family'"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'center'"
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "7276679da1afde0df37a",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FactSales"
+              }
+            },
+            "Property": "ProductFamily"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
   }
 }

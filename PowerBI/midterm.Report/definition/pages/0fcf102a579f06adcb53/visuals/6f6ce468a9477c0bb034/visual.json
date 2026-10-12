@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "6f6ce468a9477c0bb034",
   "position": {
-    "x": 828.22526960458,
-    "y": 743.56224204500074,
+    "x": 958.80299251870326,
+    "y": 716.40897755610979,
     "z": 9,
-    "height": 283.43709226467848,
-    "width": 1058.2878444947412,
+    "height": 301.645885286783,
+    "width": 960.14962593516213,
     "tabOrder": 9
   },
   "visual": {
@@ -28,7 +28,8 @@
               },
               "queryRef": "DimDate.Year",
               "nativeQueryRef": "Year",
-              "active": true
+              "active": true,
+              "format": "#,0"
             }
           ]
         },
@@ -46,7 +47,8 @@
                 }
               },
               "queryRef": "00_Core Measures.Total Sales",
-              "nativeQueryRef": "Total Sales"
+              "nativeQueryRef": "Total Sales",
+              "format": "0"
             },
             {
               "field": {
@@ -95,7 +97,7 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "01_Overview"
+                      "Entity": "01_Overview Measures"
                     }
                   },
                   "Property": "Sales YoY % (ex PRODUCE)"
@@ -109,7 +111,7 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "01_Overview"
+                      "Entity": "01_Overview Measures"
                     }
                   },
                   "Property": "OV Active Stores"
@@ -131,10 +133,10 @@
                     "Entity": "00_Core Measures"
                   }
                 },
-                "Property": "YoY Growth %"
+                "Property": "Sales per Transaction"
               }
             },
-            "direction": "Descending"
+            "direction": "Ascending"
           }
         ]
       }
@@ -149,6 +151,13 @@
                   "Value": "12D"
                 }
               }
+            },
+            "valuesOnRow": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
             }
           }
         }
@@ -161,7 +170,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             },
@@ -221,8 +230,143 @@
             }
           }
         }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Yearly Performance Summary'"
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "b5f1d186015721ed3ae2",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimDate"
+              }
+            },
+            "Property": "Year"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "32312c2b68687ec6e891",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "00_Core Measures"
+              }
+            },
+            "Property": "Total Sales"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "d48398b44413ebcfdfcb",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "00_Core Measures"
+              }
+            },
+            "Property": "Total Transactions"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "4f02f3e5e3b34d503219",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "00_Core Measures"
+              }
+            },
+            "Property": "Sales per Transaction"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "c6eca3e91cf15c22da64",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "00_Core Measures"
+              }
+            },
+            "Property": "YoY Growth %"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "1a86481bb0f6398b8b60",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "01_Overview Measures"
+              }
+            },
+            "Property": "Sales YoY % (ex PRODUCE)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "1044bfec4b87c5d2f4ef",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "01_Overview Measures"
+              }
+            },
+            "Property": "OV Active Stores"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

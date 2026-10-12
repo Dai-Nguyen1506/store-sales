@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "521ffbb4e798763fd6f1",
   "position": {
-    "x": 908.88888888888891,
-    "y": 322.22222222222223,
+    "x": 0,
+    "y": 271.42857142857144,
     "z": 9000,
-    "height": 433.33333333333331,
-    "width": 893.33333333333326,
+    "height": 415.71428571428572,
+    "width": 1087.1428571428571,
     "tabOrder": 9000
   },
   "visual": {
@@ -189,6 +189,9 @@
             }
           ]
         }
+      },
+      "sortDefinition": {
+        "isDefaultSort": true
       }
     },
     "objects": {
@@ -219,6 +222,21 @@
           },
           "selector": {
             "id": "1"
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Store Performance Matrix (Growth vs. Share)'"
+                }
+              }
+            }
           }
         }
       ]
