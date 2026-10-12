@@ -1,0 +1,106 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "0119206517659c7730d6",
+  "position": {
+    "x": 638.08103988341509,
+    "y": 0,
+    "z": 1,
+    "height": 539.28139499824113,
+    "width": 658.664299234493,
+    "tabOrder": 1
+  },
+  "visual": {
+    "visualType": "waterfallChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimProduct"
+                    }
+                  },
+                  "Property": "ProductFamily"
+                }
+              },
+              "queryRef": "DimProduct.ProductFamily",
+              "nativeQueryRef": "ProductFamily",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "03_Store Measures"
+                    }
+                  },
+                  "Property": "Sales Variance YoY"
+                }
+              },
+              "queryRef": "03_Store Measures.Sales Variance YoY",
+              "nativeQueryRef": "Sales Variance YoY"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "03_Store Measures"
+                  }
+                },
+                "Property": "Sales Variance YoY"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "32bb0ce3deebceec656f",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimProduct"
+              }
+            },
+            "Property": "ProductFamily"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "9ca6358b8a86ac8ff306",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "03_Store Measures"
+              }
+            },
+            "Property": "Sales Variance YoY"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

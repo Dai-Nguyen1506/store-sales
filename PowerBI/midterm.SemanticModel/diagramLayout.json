@@ -171,6 +171,18 @@
             "width": 234
           },
           "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2232.62263469284,
+            "y": 188.55564369994454
+          },
+          "nodeIndex": "03_Store Measures",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
         }
       ],
       "name": "All tables",
