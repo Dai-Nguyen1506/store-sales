@@ -65,20 +65,6 @@
                       "Entity": "00_Core Measures"
                     }
                   },
-                  "Property": "Sales YoY %"
-                }
-              },
-              "queryRef": "00_Core Measures.Sales YoY Change",
-              "nativeQueryRef": "Sales YoY Change"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "00_Core Measures"
-                    }
-                  },
                   "Property": "YoY Growth %"
                 }
               },
