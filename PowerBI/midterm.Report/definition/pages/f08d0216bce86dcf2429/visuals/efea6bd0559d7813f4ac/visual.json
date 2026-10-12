@@ -1,0 +1,222 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "efea6bd0559d7813f4ac",
+  "position": {
+    "x": 10.291629675538953,
+    "y": 549.57302467378008,
+    "z": 3,
+    "height": 531.04809125781,
+    "width": 609.26447679190608,
+    "tabOrder": 3
+  },
+  "visual": {
+    "visualType": "clusteredBarChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimProduct"
+                    }
+                  },
+                  "Property": "ProductFamily"
+                }
+              },
+              "queryRef": "DimProduct.ProductFamily",
+              "nativeQueryRef": "ProductFamily",
+              "active": true
+            }
+          ]
+        },
+        "Tooltips": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "00_Core Measures"
+                    }
+                  },
+                  "Property": "Total Sales"
+                }
+              },
+              "queryRef": "00_Core Measures.Total Sales",
+              "nativeQueryRef": "Total Sales"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "04_Store"
+                    }
+                  },
+                  "Property": "Sales Share %"
+                }
+              },
+              "queryRef": "04_Store.Sales Share %",
+              "nativeQueryRef": "Sales Share %"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "03_Store Measures"
+                    }
+                  },
+                  "Property": "Promotional Lift %"
+                }
+              },
+              "queryRef": "03_Store Measures.Promotional Lift %",
+              "nativeQueryRef": "Promotional Lift %"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "03_Store Measures"
+                    }
+                  },
+                  "Property": "Average Daily Sales No Promotion"
+                }
+              },
+              "queryRef": "03_Store Measures.Average Daily Sales No Promotion",
+              "nativeQueryRef": "Average Daily Sales No Promotion"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "03_Store Measures"
+                    }
+                  },
+                  "Property": "Average Daily Sales On Promotion"
+                }
+              },
+              "queryRef": "03_Store Measures.Average Daily Sales On Promotion",
+              "nativeQueryRef": "Average Daily Sales On Promotion"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "03_Store Measures"
+                  }
+                },
+                "Property": "Average Daily Sales No Promotion"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "06a6846fc98c436be24b",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimProduct"
+              }
+            },
+            "Property": "ProductFamily"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "28224289f04e2419c3ec",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "03_Store Measures"
+              }
+            },
+            "Property": "Average Daily Sales No Promotion"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "cacb0c12483ba8e1cdf4",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "03_Store Measures"
+              }
+            },
+            "Property": "Average Daily Sales On Promotion"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "a79998985f81f0a62ac3",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "00_Core Measures"
+              }
+            },
+            "Property": "Total Sales"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "d1448368aa714afb489e",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "04_Store"
+              }
+            },
+            "Property": "Sales Share %"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "1824f18e532575b65796",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "03_Store Measures"
+              }
+            },
+            "Property": "Promotional Lift %"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

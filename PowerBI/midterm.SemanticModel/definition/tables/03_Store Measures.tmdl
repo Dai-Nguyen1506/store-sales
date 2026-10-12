@@ -1,0 +1,59 @@
+table '03_Store Measures'
+	lineageTag: 31d9e48e-9111-44be-9cb6-6f77e1d757fc
+
+	measure 'Total Sales Prior Year' = CALCULATE([Total Sales], SAMEPERIODLASTYEAR(DimDate[Date]))
+		lineageTag: 9bb70b58-05a4-4b7a-ae86-63f26aac993b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Sales Variance YoY' = [Total Sales] - [Total Sales Prior Year]
+		lineageTag: 1398209a-bc60-40b5-add2-8dc153b0a928
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Growth Contribution %' = DIVIDE([Sales Variance YoY], CALCULATE([Sales Variance YoY], ALL(DimProduct[ProductFamily])))
+		lineageTag: e92dcb05-7d8e-46ec-ade9-8159dc4efa8c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Product Sales Rank' = RANKX(ALL(DimProduct[ProductFamily]), [Total Sales], , DESC)
+		formatString: 0
+		lineageTag: 2f3fe547-045f-4d7e-8f1a-a527653a0cad
+
+	measure 'Average Daily Sales On Promotion' = CALCULATE([Total Sales], FactSales[onpromotion] > 0) / DISTINCTCOUNT(DimDate[Date])
+		lineageTag: d7264603-cbc0-4e4d-8386-03e320122ac6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average Daily Sales No Promotion' = CALCULATE([Total Sales], FactSales[onpromotion] == 0) / DISTINCTCOUNT(DimDate[Date])
+		lineageTag: 0d81d0f6-1344-4c16-bac1-8730d324b898
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Promotional Lift %' = DIVIDE([Average Daily Sales On Promotion] - [Average Daily Sales No Promotion], [Average Daily Sales No Promotion])
+		lineageTag: d44171c7-7316-4662-93ec-45bc078db833
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average Daily Oil Price' = AVERAGE(FactOil[OilPrice])
+		lineageTag: 6e40f763-0c4b-4622-8ee6-e4b3eb63abf1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Column
+		formatString: 0
+		lineageTag: eb2b5f42-6eac-4b15-a3e6-3f9462a3c9ad
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Column]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition '03_Store Measures' = calculated
+		mode: import
+		source = Row("Column", BLANK())
+
+	annotation PBI_Id = 9f73c1c3aa6e4b5f90ce50a03ca26d62
+
+	annotation 436ba87b-9c83-4389-a31b-ebd06a36be98 = {"Expression":""}
+

@@ -217,6 +217,20 @@
             }
           ]
         }
+      },
+      {
+        "name": "df285ea3e27b561d4449",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "04_Store"
+              }
+            },
+            "Property": "Active Stores"
+          }
+        },
+        "type": "Advanced"
       }
     ]
   }

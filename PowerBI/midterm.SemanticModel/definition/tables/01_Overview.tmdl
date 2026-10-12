@@ -113,3 +113,4 @@ table 01_Overview
 				  #"Changed column type"
 
 	annotation PBI_ResultType = Table
+

@@ -21,9 +21,11 @@ ref table FactTransactions
 ref table DimDate
 ref table DimProduct
 ref table '00_Core Measures'
+ref table 04_Store
 ref table 01_Overview
 ref table '02_Trend Measures'
-ref table 04_Store
 ref table '05_Driver Measures'
+ref table '03_Store Measures'
 
 ref cultureInfo en-US
+
