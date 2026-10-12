@@ -4,5 +4,32 @@
   "displayName": "Store Performance",
   "displayOption": "FitToPage",
   "height": 1080,
-  "width": 1920
+  "width": 1920,
+  "visualInteractions": [
+    {
+      "source": "a271021807f958864475",
+      "target": "0106917f02935b5e0047",
+      "type": "NoFilter"
+    },
+    {
+      "source": "0106917f02935b5e0047",
+      "target": "41cae282dee1a688b640",
+      "type": "DataFilter"
+    },
+    {
+      "source": "41cae282dee1a688b640",
+      "target": "0106917f02935b5e0047",
+      "type": "NoFilter"
+    },
+    {
+      "source": "17fd3de75aa8526ea4cf",
+      "target": "0106917f02935b5e0047",
+      "type": "DataFilter"
+    },
+    {
+      "source": "17fd3de75aa8526ea4cf",
+      "target": "a271021807f958864475",
+      "type": "NoFilter"
+    }
+  ]
 }

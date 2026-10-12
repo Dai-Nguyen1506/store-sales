@@ -65,7 +65,7 @@
                       "Entity": "00_Core Measures"
                     }
                   },
-                  "Property": "Sales YoY Change"
+                  "Property": "Sales YoY %"
                 }
               },
               "queryRef": "00_Core Measures.Sales YoY Change",
@@ -130,7 +130,7 @@
                 "Entity": "00_Core Measures"
               }
             },
-            "Property": "Sales YoY Change"
+            "Property": "Sales YoY %"
           }
         },
         "type": "Advanced"
