@@ -33,36 +33,7 @@
           ]
         },
         "Tooltips": {
-          "projections": [
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "00_Core Measures"
-                    }
-                  },
-                  "Property": "Sales YoY %"
-                }
-              },
-              "queryRef": "00_Core Measures.Sales YoY %",
-              "nativeQueryRef": "Sales YoY %"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "00_Core Measures"
-                    }
-                  },
-                  "Property": "Sales Share %"
-                }
-              },
-              "queryRef": "00_Core Measures.Sales Share %",
-              "nativeQueryRef": "Sales Share %"
-            }
-          ]
+          "projections": []
         },
         "Y": {
           "projections": [
@@ -71,14 +42,14 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "00_Core Measures"
+                      "Entity": "04_Store"
                     }
                   },
-                  "Property": "Total Sales"
+                  "Property": "Active Stores"
                 }
               },
-              "queryRef": "00_Core Measures.Total Sales",
-              "nativeQueryRef": "Total Sales"
+              "queryRef": "04_Store.Active Stores",
+              "nativeQueryRef": "Active Stores"
             }
           ]
         }
@@ -90,10 +61,10 @@
               "Measure": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "00_Core Measures"
+                    "Entity": "04_Store"
                   }
                 },
-                "Property": "Total Sales"
+                "Property": "Active Stores"
               }
             },
             "direction": "Descending"

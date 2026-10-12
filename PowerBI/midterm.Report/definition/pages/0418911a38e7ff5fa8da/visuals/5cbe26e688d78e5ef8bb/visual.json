@@ -23,11 +23,11 @@
                       "Entity": "00_Core Measures"
                     }
                   },
-                  "Property": "Sales YoY %"
+                  "Property": "YoY Growth %"
                 }
               },
-              "queryRef": "00_Core Measures.Sales YoY Change",
-              "nativeQueryRef": "Sales YoY %"
+              "queryRef": "00_Core Measures.YoY Growth %",
+              "nativeQueryRef": "YoY Growth %"
             }
           ]
         }
@@ -42,7 +42,7 @@
                     "Entity": "00_Core Measures"
                   }
                 },
-                "Property": "Sales YoY %"
+                "Property": "YoY Growth %"
               }
             },
             "direction": "Descending"

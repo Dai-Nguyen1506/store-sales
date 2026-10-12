@@ -38,19 +38,6 @@ table '00_Core Measures'
 		formatString: 0.0%;-0.0%;0.0%
 		lineageTag: 795fd862-1070-4eb9-8bbf-9935df1eca89
 
-		changedProperty = IsHidden
-
-	measure 'Sales YoY %' =
-			
-			DIVIDE (
-			    [Total Sales] - [Sales LY],
-			    [Sales LY]
-			)
-		formatString: 0.00%;-0.00%;0.00%
-		lineageTag: e5dd3bcc-d367-4ae2-b218-7b706bd426b1
-
-		changedProperty = IsHidden
-
 	measure 'Sales per Transaction' =
 			
 			IF (
@@ -64,63 +51,8 @@ table '00_Core Measures'
 		formatString: #,0.00
 		lineageTag: 72e34dff-2090-44e2-9ba8-cb15fc43dc8a
 
-		changedProperty = IsHidden
-
-	measure 'Active Stores' =
-			
-			COUNTROWS (
-			    FILTER (
-			        VALUES ( DimStores[store_nbr] ),
-			        CALCULATE ( [Total Sales] ) > 0
-			    )
-			)
-		formatString: 0
-		lineageTag: a46be573-edf9-4575-9253-8e28d0b56cc9
-
-		changedProperty = IsHidden
-
-	measure 'Sales Share %' =
-			
-			DIVIDE (
-			    [Total Sales],
-			    CALCULATE (
-			        [Total Sales],
-			        ALLSELECTED ( DimStores[store_nbr] )
-			    )
-			)
-		formatString: 0.00%;-0.00%;0.00%
-		lineageTag: 06f0a894-0086-4171-95ff-222bb2910b8e
-
-		changedProperty = IsHidden
-
-	measure 'Store Rank' =
-			
-			IF (
-			    NOT ISBLANK ( [Total Sales] ),
-			    RANKX (
-			        ALLSELECTED ( DimStores[store_nbr] ),
-			        [Total Sales],
-			        ,
-			        DESC,
-			        DENSE
-			    )
-			)
-		formatString: 0
-		lineageTag: 0c39ba2d-a25c-4835-bef2-7c509a0303db
-
-		changedProperty = IsHidden
-
-	measure 'Avg Promotion Items' =
-			
-			AVERAGEX (
-			    VALUES ( DimDate[Date] ),
-			    [Promotion Items]
-			)
-		lineageTag: 0f22d579-0795-44d1-9820-68f8f7160381
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
-	column Column = 1
+	column Column1
+		dataType: int64
 		isHidden
 		formatString: 0
 		lineageTag: 52dcf6be-7710-4c88-b370-64bcb0dc1b3b
