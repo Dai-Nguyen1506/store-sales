@@ -4,10 +4,10 @@
   "position": {
     "x": 109.42249240121581,
     "y": 14.589665653495441,
-    "z": 1,
+    "z": 1000,
     "height": 1018.3586626139818,
     "width": 604.01215805471122,
-    "tabOrder": 1
+    "tabOrder": 1000
   },
   "visual": {
     "visualType": "tableEx",
@@ -76,65 +76,5 @@
       }
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "9c3aab57a497ffa09d7b",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "DimProduct"
-              }
-            },
-            "Property": "ProductFamily"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "ea4d3ec2fc9af4006b59",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "00_Core Measures"
-              }
-            },
-            "Property": "Total Sales"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "5ef570ed19be8f446cfa",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "00_Core Measures"
-              }
-            },
-            "Property": "Sales LY"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "00f4eeefc0ad7f00669e",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "00_Core Measures"
-              }
-            },
-            "Property": "YoY Growth %"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

@@ -73,7 +73,7 @@ table FactSales
 		mode: import
 		source =
 				let
-				    Source = Csv.Document(File.Contents(RootPath & "\datasets\train.csv"),[Delimiter=",", Columns=6, Encoding=1258, QuoteStyle=QuoteStyle.None]),
+				    Source = Csv.Document(File.Contents("D:\data visualization\teaching_dataset\train.csv"), [Delimiter = ",", Columns = 6, Encoding = 1258, QuoteStyle = QuoteStyle.None]),
 				    #"Change Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}, {"Column2", type text}, {"Column3", type text}, {"Column4", type text}, {"Column5", type text}, {"Column6", type text}}),
 				    #"Replaced Value" = Table.ReplaceValue(#"Change Type",".",",",Replacer.ReplaceText,{"Column5"}),
 				    #"Promoted Headers" = Table.PromoteHeaders(#"Replaced Value", [PromoteAllScalars=true]),
